@@ -96,9 +96,9 @@
     <!-- ./wrapper -->
 
     <!-- PWA Button Start -->
-    <button class="pwa-install-btn bg-white position-fixed d-none" id="installApp">
+    <!-- <button class="pwa-install-btn bg-white position-fixed d-none" id="installApp">
         <img src="{{ asset('pwa-btn.png') }}" alt="Install App">
-    </button>
+    </button> -->
     <!-- PWA Button End -->
 
     @include('backend.layouts.partials.scripts')
