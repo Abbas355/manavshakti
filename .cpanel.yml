@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/manavzld/public_html/
+    - export DEPLOYPATH=/home1/manavzld/public_html/
     - /bin/cp * $DEPLOYPATH
