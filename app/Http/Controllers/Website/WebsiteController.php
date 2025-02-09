@@ -61,30 +61,6 @@ class WebsiteController extends Controller
         $this->setting = loadSetting(); // see helpers.php
     }
 
-
-
-// Role Switch Function
-    public function switchRole(Request $request)
-    {
-        $user = auth()->user();
-        $newRole = $request->input('role');
-    
-        // Validate that the new role is either 'company' or 'candidate'
-        if (!in_array($newRole, ['company', 'candidate'])) {
-            return back()->with('error', 'Invalid role selected.');
-        }
-    
-        // Check if the role is actually changing
-        if ($user->role === $newRole) {
-            return back()->with('info', 'You are already in this role.');
-        }
-    
-        // Update the role in the database
-        $user->update(['role' => $newRole]);
-    
-        return redirect()->route($newRole . '.dashboard')->with('success', 'Role switched to ' . ucfirst($newRole));
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -223,18 +199,18 @@ class WebsiteController extends Controller
     {
         try {
             $data = (new JobListService())->jobs($request);
-    
+
             // For adding currency code
             $current_currency = currentCurrency();
-    
+
             return view('frontend.pages.jobs', $data, compact('current_currency'));
         } catch (\Exception $e) {
             flashError('An error occurred: '.$e->getMessage());
-    
+
             return back();
         }
     }
-    
+
     public function loadmore(Request $request)
     {
         try {
