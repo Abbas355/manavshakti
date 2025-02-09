@@ -53,7 +53,13 @@ class JobController extends Controller
             $jobs = (new JobListService())->execute($request);
             $job_categories = JobCategory::all()->sortBy('name');
             $experiences = Experience::all();
-            $job_types = JobType::all();
+           // $job_types = JobType::all();
+           $job_types = JobType::where('id', 2)->get();
+
+           // 🔹 Get only JobTypes where the translation name is "work"
+        // $job_types = JobType::whereHas('translations', function ($query) {
+        //     $query->where('name', 'work');
+        // })->get();
             $companies = Company::with('user:id,name')->get(['id', 'user_id']);
             $edited_jobs = Job::edited()->count();
 

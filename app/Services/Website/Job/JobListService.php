@@ -14,7 +14,8 @@ class JobListService
      *
      * @return void
      */
-    public function jobs($request): mixed
+
+   public function jobs($request): mixed
     {
         $data = $this->getJobs($request);
 
@@ -59,7 +60,7 @@ class JobListService
 
         return $data;
     }
-
+        
     public function loadMore($request)
     {
         if ($request->page == 1) {
@@ -89,6 +90,8 @@ class JobListService
             }
         }
     }
+
+  
 
     public function categoryJobs($request, string $slug): mixed
     {

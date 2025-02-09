@@ -199,9 +199,10 @@
                                                         <div>
                                                             @if ($job->salary_mode == 'range')
                                                                 <h3 class='bold'>
-                                                                    {{ getFormattedNumber($job->min_salary) }} -
-                                                                    {{ getFormattedNumber($job->max_salary) }}
-                                                                    {{ currentCurrencyCode() }}</h3>
+                                                                {{ getFormattedNumber($job->min_salary) }} -
+                                                                {{ getFormattedNumber($job->max_salary) }}
+                                                                    {{ currentCurrencyCode() }}
+                                                                </h3>
                                                             @else
                                                                 <h3 class="bold">{{ $job->custom_salary }}</h3>
                                                             @endif
@@ -361,6 +362,8 @@
         </div>
     </div>
 
+
+  
     <div class="modal fade" id="bulk_import_modal" tabindex="-1" role="dialog"
         aria-labelledby="bulk_import_modalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">

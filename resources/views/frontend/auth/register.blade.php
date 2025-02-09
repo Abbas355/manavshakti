@@ -49,8 +49,8 @@
                                                 class="switcher-container tw-px-0 tw-w-full tw-border-2 tw-border-red-600 tw-flex">
                                                 <!-- <input id="switcher-toggle-on"
                                                     class="switcher-toggle switcher-toggle-left tw-w-full" name="role"
-                                                    value="candidate" type="radio" checked="">
-                                                <label for="switcher-toggle-on"
+                                                    value="candidate" type="radio" checked=""> -->
+                                                <!-- <label for="switcher-toggle-on"
                                                     class="switcher-button tw-w-full tw-rounded-tl-md  tw-rounded-bl-md"
                                                     id="web-btn">
                                                     <span><x-svg.candidate-profile-icon /></span>

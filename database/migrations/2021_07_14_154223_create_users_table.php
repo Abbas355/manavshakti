@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('image')->default('backend/image/default.png');
             $table->enum('role', ['company', 'candidate'])->default('candidate');
+            $table->string('first_role')->nullable()->after('role');
             $table->boolean('recent_activities_alert')->default(true);
             $table->boolean('job_expired_alert')->default(true);
             $table->boolean('new_job_alert')->default(true);
