@@ -22,22 +22,23 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Modules\Location\Entities\Country;
-use Illuminate\Support\Facades\Auth;
-
 
 trait JobAble
 {
-
-
-protected function getJobs($request)
-     {
-    // Start by filtering jobs based on request
+    protected function getJobs($request)
+    {
+        // $filteredJobs = $this->filterJobs($request)->latest();
+        // $featured_jobs = $this->filterJobs($request)->latest()->where('featured', 1)->take(18)->get();
+        // $jobs = $filteredJobs->paginate(18)->withQueryString();
+         // Start by filtering jobs based on request
     $filteredJobs = $this->filterJobs($request);
+
+    // Check if the user is authenticated
     if (Auth::check()) {
-        $user = Auth::user();
-        $companyId = $user->company->id ?? null; 
-        // If authenticated, filter for job_type_id = 2 and exclude jobs created by the user
-        $filteredJobs = $filteredJobs->where('job_type_id', 2)->where('company_id','!=',$companyId)->latest();
+        // If authenticated, filter for job_type_id = 2
+        $filteredJobs = $filteredJobs->where('job_type_id', 2)->latest();
+
+        // Get featured jobs with job_type_id = 2
         $featured_jobs = $this->filterJobs($request)->where('job_type_id', 2)->latest()->where('featured', 1)->take(18)->get();
     } else {
         // If not authenticated, just get all jobs (no filtering by job_type_id)
@@ -46,31 +47,6 @@ protected function getJobs($request)
 
     // Paginate the filtered jobs
     $jobs = $filteredJobs->paginate(18)->withQueryString();
-
-    return [
-        'total_jobs' => $jobs->total(),
-        'jobs' => $jobs,
-        'featured_jobs' => $featured_jobs,
-        'countries' => Country::all(['id', 'name', 'slug']),
-        'categories' => JobCategory::all()->sortBy('name'),
-        'job_roles' => JobRole::all()->sortBy('name'),
-        'max_salary' => \DB::table('jobs')->max('max_salary'),
-        'min_salary' => \DB::table('jobs')->max('min_salary'),
-        'experiences' => Experience::all(),
-        'educations' => Education::all(),
-        'job_types' => JobType::all(),
-        'skills' => Skill::all()->sortBy('name'),
-        'popularTags' => $this->popularTags(),
-    ];
-}
-
-
-    
-    /*protected function getJobs($request)
-    {
-        $filteredJobs = $this->filterJobs($request)->latest();
-        $featured_jobs = $this->filterJobs($request)->latest()->where('featured', 1)->take(18)->get();
-        $jobs = $filteredJobs->paginate(18)->withQueryString();
 
         return [
             'total_jobs' => $jobs->total(),
@@ -87,7 +63,7 @@ protected function getJobs($request)
             'skills' => Skill::all()->sortBy('name'),
             'popularTags' => $this->popularTags(),
         ];
-    }*/
+    }
 
     protected function moreJobs($request)
     {

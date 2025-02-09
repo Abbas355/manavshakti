@@ -154,7 +154,6 @@ Route::controller(SocialLoginController::class)->group(function () {
 // =====================================================================
 // =============================Guest Routes=============================
 // ======================================================================
-
 Route::controller(WebsiteController::class)->name('website.')->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/about', 'about')->name('about');
@@ -203,8 +202,8 @@ Route::middleware('auth:user', 'verified')->group(function () {
 
     Route::post('/user/notification/read', [WebsiteController::class, 'notificationRead'])->name('user.notification.read');
 
-    // Toggle User-Role Route
     Route::post('/switch-role', [WebsiteController::class, 'switchRole'])->name('user.switchRole');
+
 
     // Candidate Routes
     Route::controller(CandidateController::class)->prefix('candidate')->middleware('candidate')->name('candidate.')->group(function () {
@@ -232,7 +231,6 @@ Route::middleware('auth:user', 'verified')->group(function () {
     // Company Routes
     Route::controller(CompanyController::class)->prefix('company')->middleware(['company', 'has_plan'])->name('company.')->group(function () {
         Route::middleware('company.profile')->group(function () {
-           
             Route::get('dashboard', 'dashboard')->name('dashboard');
             Route::get('plans', 'plan')->name('plan')->middleware('user_active');
             Route::post('download/transaction/invoice/{transaction}', 'downloadTransactionInvoice')->name('transaction.invoice.download');

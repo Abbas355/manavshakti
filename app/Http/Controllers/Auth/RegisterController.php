@@ -135,7 +135,7 @@ class RegisterController extends Controller
             'username' => $username,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'first_role' => $data['role'] == 'company' ? 'company' : null, 
+            'first_role' => $data['role'] == 'company' ? 'company' : null,
         ]);
         
         if($is_sub_company == true){

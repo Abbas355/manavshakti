@@ -17,8 +17,6 @@
                                 <p class="m-0 r-c">{{ __('here_is_your_daily_activities_career_opportunities') }}
                                 </p>
                             </div>
-
-
                             <!-- Dropdown Role Switch -->
 <div class="role-switch-container">
     <button class="btn btn-primary dropdown-toggle" id="roleDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,7 +27,7 @@
             <button type="button" class="dropdown-item switch-role" data-role="company">Company</button>
         </li>
         <li>
-            <button type="button" class="dropdown-item switch-role" data-role="candidate">Constractor</button>
+            <button type="button" class="dropdown-item switch-role" data-role="candidate">Candidate</button>
         </li>
     </ul>
 
