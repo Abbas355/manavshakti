@@ -25,7 +25,7 @@
             <button type="button" class="dropdown-item switch-role" data-role="company">Company</button>
         </li>
         <li>
-            <button type="button" class="dropdown-item switch-role" data-role="candidate">Candidate</button>
+            <button type="button" class="dropdown-item switch-role" data-role="candidate">Constructor</button>
         </li>
     </ul>
 

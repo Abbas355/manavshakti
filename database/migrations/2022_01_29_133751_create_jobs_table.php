@@ -29,6 +29,7 @@ class CreateJobsTable extends Migration
             $table->integer('max_salary');
             $table->date('deadline')->nullable();
             $table->longText('description');
+            $table->string('attachment')->nullable()->after('description');
             $table->enum('status', ['pending', 'active', 'expired'])->default('pending');
             $table->enum('apply_on', ['app', 'email', 'custom_url'])->default('app');
             $table->string('apply_email')->nullable();

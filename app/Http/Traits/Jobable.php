@@ -22,28 +22,52 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Modules\Location\Entities\Country;
+use Illuminate\Support\Facades\Auth;
+
 
 trait JobAble
 {
     protected function getJobs($request)
     {
         // $filteredJobs = $this->filterJobs($request)->latest();
-        // $featured_jobs = $this->filterJobs($request)->latest()->where('featured', 1)->take(18)->get();
-        // $jobs = $filteredJobs->paginate(18)->withQueryString();
-         // Start by filtering jobs based on request
+        // $featured_jobs = $this->filterJobs($request)->latest()->where('featured', 1)->deadlineActive()
+        //     ->take(18)->get();
+        // $jobs = $filteredJobs->deadlineActive()->paginate(18)->withQueryString();
+  
     $filteredJobs = $this->filterJobs($request);
 
     // Check if the user is authenticated
     if (Auth::check()) {
-        // If authenticated, filter for job_type_id = 2
-        $filteredJobs = $filteredJobs->where('job_type_id', 2)->latest();
+        $user = Auth::user();
+        $companyId = $user->companyId(); 
+        $filteredJobs = $filteredJobs->where('job_type_id', 2)->where('company_id', '!=', $companyId)->latest();
 
         // Get featured jobs with job_type_id = 2
         $featured_jobs = $this->filterJobs($request)->where('job_type_id', 2)->latest()->where('featured', 1)->take(18)->get();
+    } elseif ($request->route()->getName() === 'website.work')
+    //($request->has('job_type_id') && $request->job_type_id == 2) 
+    {
+        // For non-authenticated users, show only job_type_id = 2
+        $filteredJobs = $filteredJobs->where('job_type_id', 2)->latest();
+        
+        $featured_jobs = $this->filterJobs($request)
+                              ->where('job_type_id', 2)
+                              ->where('featured', 1)
+                              ->latest()
+                              ->take(18)
+                              ->get();
     } else {
-        // If not authenticated, just get all jobs (no filtering by job_type_id)
-        $featured_jobs = $this->filterJobs($request)->latest()->where('featured', 1)->take(18)->get();
+        // Show all other job posts (excluding job_type_id = 2)
+        $filteredJobs = $filteredJobs->where('job_type_id', '!=', 2)->latest();
+
+        $featured_jobs = $this->filterJobs($request)
+                              ->where('job_type_id', '!=', 2)
+                              ->where('featured', 1)
+                              ->latest()
+                              ->take(18)
+                              ->get();
     }
+
 
     // Paginate the filtered jobs
     $jobs = $filteredJobs->paginate(18)->withQueryString();

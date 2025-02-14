@@ -45,8 +45,22 @@ class CompanyStoreService
         $request->validate([
             'min_salary' => 'nullable|numeric|between:0,'.$max,
             'max_salary' => 'nullable|numeric|min:'.$min,
+            'attachment' => 'nullable',
         ]);
 
+        // $attachmentPath = null;
+        // if ($request->hasFile('attachment')) {
+        //     $attachmentPath = $request->file('attachment')->store('job_attachments', 'public');
+        // }
+        $attachment = $request->file('attachment');
+
+        if ($attachment) {
+            // Store the file and get the file path
+            $attachmentPath = $attachment->store('attachments', 'public');
+        } else {
+            // Check if attachment is a string or any other type
+            $attachmentPath = $request->input('attachment'); // If it's a string, just store the value
+        }
         if ($request->apply_on === 'custom_url') {
             $request->validate([
                 'apply_url' => 'required|url',
@@ -120,6 +134,7 @@ class CompanyStoreService
             'apply_email' => $request->apply_email ?? null,
             'apply_url' => $request->apply_url ?? null,
             'description' => $request->description,
+            'attachment' => $attachmentPath,
             'featured' => $featured,
             'highlight' => $highlight,
             'is_remote' => $request->is_remote ?? 0,

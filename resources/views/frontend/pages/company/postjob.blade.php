@@ -210,6 +210,7 @@
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    
                                     <div class="col-lg-6 col-md-6 rt-mb-20">
                                         <x-forms.label name="vacancies" :required="true" class="tw-text-sm tw-mb-2" />
                                         <input value="{{ old('vacancies', 1) }}" name="vacancies" type="text"
@@ -219,6 +220,88 @@
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <!-- Your other input fields here -->
+    
+    <!-- <div class="col-lg-6 col-md-6 rt-mb-20">
+        <label for="attachment" class="tw-text-sm tw-mb-2">{{ __('Upload Attachment') }}</label>
+
+        <div class="file-upload-container">
+            <input type="file" name="attachment" id="attachment" class="form-control @error('attachment') is-invalid @enderror"
+                   accept=".pdf,.doc,.docx,.jpg,.png" aria-label="Upload Attachment" style="display: none;" onchange="updateFileName()">
+
+            <label for="attachment" class="file-placeholder" id="file-placeholder">
+                {{ __('Choose a file (PDF, DOC, DOCX, JPG, PNG)') }}
+            </label>
+        </div>
+
+        @error('attachment')
+            <span class="error invalid-feedback">{{ $message }}</span>
+        @enderror
+    </div> -->
+
+                    
+                    <!-- Attachment Upload Field -->
+<div class="col-lg-6 col-md-6 rt-mb-20">
+    <label for="attachment" class="tw-text-sm tw-mb-2">{{ __('Upload Attachment') }}</label>
+
+    <!-- Custom File Upload Section -->
+    <div class="file-upload-container">
+        <!-- Hidden File Input -->
+        <input type="file" name="attachment" id="attachment" class="form-control @error('attachment') is-invalid @enderror"
+               accept=".pdf,.doc,.docx,.jpg,.png" aria-label="Upload Attachment" style="display: none;" onchange="updateFileName()">
+
+        <!-- Custom Placeholder or Upload Attachment text -->
+        <label for="attachment" class="file-placeholder" id="file-placeholder">
+            {{ __('Choose a file (PDF, DOC, DOCX, JPG, PNG)') }}
+        </label>
+    </div>
+
+    @error('attachment')
+        <span class="error invalid-feedback">{{ $message }}</span>
+    @enderror
+</div>
+
+<!-- Custom Styles -->
+<style>
+    /* Placeholder style */
+    .file-placeholder {
+        display: inline-block;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        width: 100%;
+        text-align: center;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 14px;
+        color: #888;
+        transition: border-color 0.3s ease;
+    }
+    
+    .file-placeholder:hover {
+        border-color: #aaa;
+    }
+
+    .file-placeholder:active {
+        border-color: #666;
+    }
+
+    .is-invalid + .file-placeholder {
+        border-color: #dc3545;
+    }
+</style>
+
+<!-- JavaScript to update label when file is selected -->
+<script>
+    function updateFileName() {
+        var input = document.getElementById('attachment');
+        var fileName = input.files.length > 0 ? input.files[0].name : "{{ __('Choose a file (PDF, DOC, DOCX, JPG, PNG)') }}";
+        document.getElementById('file-placeholder').textContent = fileName;
+    }
+</script>
+
+
+                
                                     <div class="col-lg-6 col-md-6 rt-mb-20">
                                         <x-forms.label name="deadline_expired" :required="true"
                                             class="tw-text-sm tw-mb-2" />

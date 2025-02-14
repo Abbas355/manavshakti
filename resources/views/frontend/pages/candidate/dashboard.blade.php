@@ -19,15 +19,20 @@
                             </div>
                             <!-- Dropdown Role Switch -->
 <div class="role-switch-container">
+   @php
+        // Mapping roles for display
+        $roleDisplayName = auth()->user()->role === 'candidate' ? 'Constructor' : 'Company';
+    @endphp
+
     <button class="btn btn-primary dropdown-toggle" id="roleDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        Current Role: <span id="currentRoleText">{{ ucfirst(auth()->user()->role) }}</span>
+    Current Role: <span id="currentRoleText">{{ $roleDisplayName }}</span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="roleDropdown">
         <li>
             <button type="button" class="dropdown-item switch-role" data-role="company">Company</button>
         </li>
         <li>
-            <button type="button" class="dropdown-item switch-role" data-role="candidate">Candidate</button>
+            <button type="button" class="dropdown-item switch-role" data-role="candidate">Constructor</button>
         </li>
     </ul>
 

@@ -220,6 +220,11 @@ class WebsiteController extends Controller
     public function jobs(Request $request)
     {
         try {
+            // Check if the current route is for 'works'
+        // if ($request->route()->getName() === 'website.work') {
+        //     // Add job_type_id = 2 to the request
+        //     $request->merge(['job_type_id' => 2]);
+        // }
             $data = (new JobListService())->jobs($request);
 
             // For adding currency code
