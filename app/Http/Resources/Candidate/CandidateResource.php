@@ -21,6 +21,9 @@ class CandidateResource extends JsonResource
         return [
             "id" => $this->id,
             "username" => $this->user->username,
+            "phone_number"=>$this->user->phone_number,
+            "is_verified"=>$this->user->is_verified,
+            "first_role"=>$this->user->first_role,
             "email" => $this->user->email,
             "role" => $this->user->role,
             "name" => $this->user->name,
@@ -28,6 +31,7 @@ class CandidateResource extends JsonResource
             "last_name" => $this->last_name,
             "role_id" => $this->role_id,
             "profession_id" => $this->profession_id,
+            "profession_name" => $this->profession ? $this->profession->name : null, // Get profession name
             "experience_id" => $this->experience_id,
             "education_id" => $this->education_id,
             "title" => $this->title,

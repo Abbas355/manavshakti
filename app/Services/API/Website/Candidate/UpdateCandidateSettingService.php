@@ -36,13 +36,14 @@ class UpdateCandidateSettingService
             return $this->updateSocialInfo($request, $user, $candidate);
         }elseif ($request->type == 'contact') {
             $contactInfo = $user->contactInfo;
-
             return $this->updateContactInfo($request, $candidate, $contactInfo);
         }elseif ($request->type == 'password') {
             return $this->updatePasswordInfo($request, $user);
         }elseif ($request->type == 'account-delete') {
             return $this->deleteAccount($request, $user);
         }
+
+       
     }
 
     protected function updatePersonalInfo($request, $user, $candidate){
@@ -93,7 +94,8 @@ class UpdateCandidateSettingService
                 "image" => $image,
             ]);
         }
-
+        $candidate->update(['profile_complete' => $candidate->profile_complete != 0 ? $candidate->profile_complete - 25 : 0]);
+           
         return $this->respondWithSuccess([
             'data' => [
                 'message' => 'Basic Info Updated Successful!',
@@ -192,7 +194,8 @@ class UpdateCandidateSettingService
         if ($request->languages) {
             $candidate->languages()->sync($request->languages);
         }
-
+        $candidate->update(['profile_complete' => $candidate->profile_complete != 0 ? $candidate->profile_complete - 25 : 0]);
+           
         return $this->respondWithSuccess([
             'data' => [
                 'message' => 'Profile Info Updated Successful!',
@@ -275,7 +278,8 @@ class UpdateCandidateSettingService
                 }
             }
         }
-
+        $candidate->update(['profile_complete' => $candidate->profile_complete != 0 ? $candidate->profile_complete - 25 : 0]);
+           
         return $this->respondWithSuccess([
             'data' => [
                 'message' => 'Social Link Updated Successful!',
@@ -339,7 +343,8 @@ class UpdateCandidateSettingService
             'lat' => $request->lat,
             'long' => $request->long,
         ]);
-
+        $candidate->update(['profile_complete' => $candidate->profile_complete != 0 ? $candidate->profile_complete - 25 : 0]);
+           
         return $this->respondWithSuccess([
             'data' => [
                 'message' => 'Contact Information Updated Successful!',

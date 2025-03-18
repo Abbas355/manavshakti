@@ -36,7 +36,7 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
             $token =  $user->createToken('job-pilot')->plainTextToken;
-
+           
             return $this->respondWithSuccess([
                 'data' => [
                     'token' => $token,
@@ -48,6 +48,7 @@ class AuthController extends Controller
             return $this->respondUnAuthenticated('Invalid Credentials');
         }
     }
+
 
     public function getUserInfo(Request $request)
     {
@@ -77,6 +78,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'phone_number' => 'required|unique:users,phone_number',
         ]);
 
         $newUsername = Str::slug($request->name);
@@ -93,8 +95,21 @@ class AuthController extends Controller
             'name' => $request->name,
             'username' => $username,
             'email' => $request->email,
+            'phone_number'=>$request->phone_number,
             'password' => Hash::make($request->password),
         ]);
+
+        // $contactInfo = $user->contactInfo()->create([
+        //     'phone' => $request->phone_number,
+        //     'secondary_phone' => '',
+        //     'email' => $request->email,
+        //     'secondary_email' => '',
+        // ]);
+        
+        // Check if contact info was created
+        // if (!$contactInfo) {
+        //     return response()->json(['error' => 'Failed to save contact info'], 500);
+        // }
 
         try {
             $admins = Admin::all();
@@ -133,6 +148,38 @@ class AuthController extends Controller
 
         return $this->respondError('Registration Failed');
     }
+
+// update is user OTP verify or not
+public function isUserVerified(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'is_verified' => 'required' // Accepts true or false
+    ]);
+
+    $email = $request->input('email'); 
+
+    $user = User::where('email', $email)->first();
+
+    if (!$user) {
+        return response()->json([
+            'success' => false,
+            'message' => 'User not found',
+        ], 404);
+    }
+
+    // Convert 'is_verified' to a boolean
+    $user->is_verified = filter_var($request->input('is_verified'), FILTER_VALIDATE_BOOLEAN);
+    $user->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'User verification status updated successfully',
+        'data' => [
+            'is_verified' => $user->is_verified,
+        ],
+    ], 200);
+}    
 
     public function profile()
     {

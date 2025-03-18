@@ -10,6 +10,7 @@ use App\Models\User;
 
 trait CandidateAble
 {
+
     private function getCandidates($request)
     {
         if (auth()->user() ? auth()->user()->role == 'company' : '') {
@@ -32,13 +33,16 @@ trait CandidateAble
                 ])
                 ->withCasts(['already_view' => 'boolean', 'bookmarked' => 'boolean'])
                 ->where('visibility', 1);
-        } else {
+        } else 
+       
+        {
             $query = Candidate::with(['user.contactInfo', 'user' => function ($query) {
                 $query->where('role', 'candidate');
             }])
                 ->where('visibility', 1);
         }
-
+     // Exclude Current User's ID
+    //  $query->where('user_id', '!=', auth()->id());
         // status
         if ($request->has('status') && $request->status != null) {
             $query->where('status', $request->status);

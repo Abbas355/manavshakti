@@ -230,9 +230,13 @@
                             @endif
                         @else
                             <div class="container">
+                            
                                 <ul class="menu-active-classes">
+                              
                                     @if (isset($public_menu_lists))
+                                    
                                         @foreach ($public_menu_lists as $public_menu_list)
+                                           
                                             <li class="menu-item">
                                                 @php
                                                     // Check if the URL starts with "http" or "https" to identify external links
@@ -250,6 +254,7 @@
                                                     @endif
                                                 </a>
                                             </li>
+                                
                                         @endforeach
                                         @if ($custom_pages->where('show_header', 1)->count() > 0 )
                                         <li class="menu-item extra-page d-none d-lg-inline-block">

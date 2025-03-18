@@ -78,6 +78,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/password/email', 'sendResetCodeEmail');
     Route::post('/password/reset', 'reset');
     Route::get('/user-info', 'getUserInfo');
+    // User OTP Verification
+    Route::get('/user_phone', 'getUserPhoneNumber');
+    Route::put('/user/verify', 'isUserVerified');
+    Route::get('/user-isverify', 'getVerifiedUser');
 });
 
 // Cadidate and Company common apis

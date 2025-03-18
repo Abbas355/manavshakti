@@ -21,13 +21,16 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('image')->default('backend/image/default.png');
-            $table->enum('role', ['company', 'candidate'])->default('candidate');
+            $table->enum('role', ['company', 'candidate',])->default('candidate');
+            $table->string('first_role')->nullable()->after('role');
             $table->boolean('recent_activities_alert')->default(true);
             $table->boolean('job_expired_alert')->default(true);
             $table->boolean('new_job_alert')->default(true);
             $table->boolean('shortlisted_alert')->default(true);
             $table->boolean('status')->default(true);
             $table->boolean('is_demo_field')->default(false);
+            $table->string('phone_number')->unique()->nullable(); 
+            $table->boolean('is_verified')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

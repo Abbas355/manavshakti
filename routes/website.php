@@ -168,6 +168,7 @@ Route::controller(WebsiteController::class)->name('website.')->group(function ()
     Route::get('/careerjet/jobs', 'careerjetJobs')->name('careerjet.job');
     Route::get('/indeed/jobs', 'indeedJobs')->name('indeed.job');
     Route::get('/jobs', 'jobs')->name('job');
+    Route::get('/works', 'jobs')->name('work'); // where job_type_id =2
     Route::get('/loadmore', 'loadmore');
     Route::get('/jobs/category/{category}', 'jobsCategory')->name('job.category.slug');
     Route::get('/job/{job:slug}', 'jobDetails')->name('job.details');
@@ -202,9 +203,13 @@ Route::middleware('auth:user', 'verified')->group(function () {
 
     Route::post('/user/notification/read', [WebsiteController::class, 'notificationRead'])->name('user.notification.read');
 
+    Route::post('/switch-role', [WebsiteController::class, 'switchRole'])->name('user.switchRole');
+
+
     // Candidate Routes
     Route::controller(CandidateController::class)->prefix('candidate')->middleware('candidate')->name('candidate.')->group(function () {
         Route::get('dashboard', 'dashboard')->name('dashboard');
+        Route::get('/works', 'workList')->name('work'); 
         Route::get('applied-jobs', 'appliedjobs')->name('appliedjob');
         Route::get('bookmarks', 'bookmarks')->name('bookmark');
         Route::get('settings', 'setting')->name('setting');
