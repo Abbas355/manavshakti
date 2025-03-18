@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory, Notifiable, HasApiTokens;
 
     protected $guarded = [];
-
+  
     protected $appends = ['image_url'];
 
     /**

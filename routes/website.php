@@ -209,6 +209,7 @@ Route::middleware('auth:user', 'verified')->group(function () {
     // Candidate Routes
     Route::controller(CandidateController::class)->prefix('candidate')->middleware('candidate')->name('candidate.')->group(function () {
         Route::get('dashboard', 'dashboard')->name('dashboard');
+        Route::get('/works', 'workList')->name('work'); 
         Route::get('applied-jobs', 'appliedjobs')->name('appliedjob');
         Route::get('bookmarks', 'bookmarks')->name('bookmark');
         Route::get('settings', 'setting')->name('setting');

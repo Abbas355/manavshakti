@@ -61,8 +61,7 @@ class WebsiteController extends Controller
         $this->setting = loadSetting(); // see helpers.php
     }
 
-
-    public function switchRole(Request $request)
+     public function switchRole(Request $request)
 {
     $user = auth()->user();
     $newRole = $request->input('role');
@@ -76,7 +75,14 @@ class WebsiteController extends Controller
     if ($user->role === $newRole) {
         return back()->with('info', 'You are already in this role.');
     }
-
+    if ($newRole === 'company') {
+       // $user->candidate()->delete();
+        $user->candidate()->update(['visibility' => false]);
+    }
+    if ($newRole === 'candidate') {
+        // $user->candidate()->delete();
+         $user->candidate()->update(['visibility' => true]);
+     }
     // Update user role
     $user->update(['role' => $newRole]);
 
@@ -220,11 +226,7 @@ class WebsiteController extends Controller
     public function jobs(Request $request)
     {
         try {
-            // Check if the current route is for 'works'
-        // if ($request->route()->getName() === 'website.work') {
-        //     // Add job_type_id = 2 to the request
-        //     $request->merge(['job_type_id' => 2]);
-        // }
+            
             $data = (new JobListService())->jobs($request);
 
             // For adding currency code
@@ -306,9 +308,11 @@ class WebsiteController extends Controller
      */
     public function candidates(Request $request)
     {
+        
         abort_if(auth('user')->check() && authUser()->role == 'candidate', 404);
 
         try {
+           
             $data['professions'] = Profession::all()->sortBy('name');
             $data['candidates'] = $this->getCandidates($request);
             $data['experiences'] = Experience::all();
@@ -319,6 +323,8 @@ class WebsiteController extends Controller
                 ->latest('tags_count')
                 ->get()
                 ->take(10);
+
+                
 
             // reset candidate cv views history
             $this->reset();

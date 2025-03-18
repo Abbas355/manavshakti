@@ -254,6 +254,9 @@
 
 @section('css')
     <style>
+        .feature-job{
+            position: sticky;
+        }
         .feature-job .slick-slide {
             margin-left: 0px !important;
             margin: 0px 12px !important;

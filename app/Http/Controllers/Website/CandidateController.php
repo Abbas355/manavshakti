@@ -20,10 +20,11 @@ use App\Models\Skill;
 use App\Services\Website\Candidate\CandidateSettingUpdateService;
 use App\Services\Website\Candidate\DashboardService;
 use Illuminate\Http\Request;
+use App\Http\Traits\JobAble;
 
 class CandidateController extends Controller
 {
-    use CandidateAble, CandidateSkillAble, HasCandidateResume;
+    use CandidateAble, CandidateSkillAble, JobAble, HasCandidateResume;
 
     public function __construct()
     {
@@ -49,6 +50,16 @@ class CandidateController extends Controller
             return back();
         }
     }
+
+
+  
+public function workList()
+{
+    $jobResults = $this->getJobs(request());
+    $jobs = $jobResults['jobs'];
+    $totalFilteredJobs = $jobResults['total_jobs'];
+    return view('frontend.pages.candidate.works', compact('jobs', 'totalFilteredJobs'));
+}
 
     /**
      * Candidate notification page

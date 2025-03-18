@@ -16,6 +16,20 @@
                 </a>
             </li>
             <li>
+                <a class="{{ request()->routeIs('candidate.work') ? 'active' : '' }}"
+                  href="{{ route('candidate.work') }}">
+                 <span class="button-content-wrapper ">
+                 <span class="button-icon align-icon-left tw-flex tw-items-center">
+                <i class="ph-briefcase"></i> 
+                </span>
+                <span class="button-text">
+                {{ __('Works') }}
+               </span>
+               </span>
+              </a>
+             </li>
+
+            <li>
                 <a class="{{ request()->routeIs('candidate.appliedjob') ? 'active' : '' }}"
                     href="{{ route('candidate.appliedjob') }}">
                     <span class="button-content-wrapper ">

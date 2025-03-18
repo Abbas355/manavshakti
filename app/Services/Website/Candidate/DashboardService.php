@@ -4,10 +4,13 @@ namespace App\Services\Website\Candidate;
 
 use App\Http\Resources\Job\JobListResource;
 // use App\Http\Resources\JobListResource;
+use App\Http\Traits\JobAble;
 use App\Models\Candidate;
 
 class DashboardService
+
 {
+    use JobAble;
     public function execute($is_api = false)
     {
         $candidate = Candidate::where('user_id', auth()->id())->first();
@@ -28,11 +31,14 @@ class DashboardService
             ->get(['id', 'company_id', 'title', 'slug', 'role_id', 'job_type_id', 'country','salary_mode','min_salary','max_salary','custom_salary','deadline_active']);
         $notifications = auth($is_api ? 'api':'user')->user()->notifications()->count();
 
+        $jobResults = $this->getJobs(request());
+        $totalFilteredJobs = $jobResults['total_jobs'];
         return [
             'appliedJobs' => $appliedJobs,
             'favoriteJobs' => $favoriteJobs,
             'notifications' => $notifications,
             'jobs' => JobListResource::collection($jobs),
+            'total_filtered_jobs' => $totalFilteredJobs,
             'candidate' => $is_api ? '':$candidate,
         ];
     }

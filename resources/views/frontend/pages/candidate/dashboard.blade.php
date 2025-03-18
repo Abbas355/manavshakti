@@ -18,10 +18,10 @@
                                 </p>
                             </div>
                             <!-- Dropdown Role Switch -->
-<div class="role-switch-container">
+                             <div class="role-switch-container">
    @php
         // Mapping roles for display
-        $roleDisplayName = auth()->user()->role === 'candidate' ? 'Constructor' : 'Company';
+        $roleDisplayName = auth()->user()->role === 'candidate' ? 'Candidate' : 'Contractor';
     @endphp
 
     <button class="btn btn-primary dropdown-toggle" id="roleDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,10 +29,10 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="roleDropdown">
         <li>
-            <button type="button" class="dropdown-item switch-role" data-role="company">Company</button>
+            <button type="button" class="dropdown-item switch-role" data-role="company">Contractor</button>
         </li>
         <li>
-            <button type="button" class="dropdown-item switch-role" data-role="candidate">Constructor</button>
+            <button type="button" class="dropdown-item switch-role" data-role="candidate">Candidate</button>
         </li>
     </ul>
 
@@ -41,10 +41,10 @@
         @csrf
         <input type="hidden" name="role" id="selectedRole">
     </form>
-</div>
+                             </div>
 
-<!-- JavaScript to Handle Role Switching -->
-<script>
+                           <!-- JavaScript to Handle Role Switching -->
+                            <script>
     document.querySelectorAll('.switch-role').forEach(button => {
         button.addEventListener('click', function () {
             let selectedRole = this.getAttribute('data-role');
@@ -52,13 +52,26 @@
             document.getElementById('roleSwitchForm').submit();
         });
     });
-</script>
+                             </script>
 
                             <span class="sidebar-open-nav">
                                 <i class="ph-list"></i>
                             </span>
                         </div>
+                        <!-- show body rows -->
                         <div class="row">
+                             <!-- Works-->
+                             <!-- <div class="col-xl-4 col-lg-6 col-md-6">
+                                <div class="single-feature-box">
+                                    <div class="single-feature-data">
+                                        <h6 class="tw-text-[#18191C] tw-text-2xl tw-font-semibold">{{ $total_filtered_jobs }}</h6>
+                                        <p>{{ __('Works') }}</p>
+                                    </div>
+                                    <div class="single-feature-icon">
+                                        <i class="ph-suitcase-simple"></i>
+                                    </div>
+                                </div>
+                            </div> -->
                             <div class="col-xl-4 col-lg-6 col-md-6">
                                 <div class="single-feature-box">
                                     <div class="single-feature-data">
@@ -70,6 +83,7 @@
                                     </div>
                                 </div>
                             </div>
+                           
                             <div class="col-xl-4 col-lg-6 col-md-6">
                                 <div class="single-feature-box">
                                     <div class="single-feature-data">

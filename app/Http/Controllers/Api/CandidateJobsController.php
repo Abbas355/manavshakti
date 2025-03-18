@@ -123,11 +123,11 @@ class CandidateJobsController extends Controller
             'cover_letter.required' => 'Please enter cover letter',
         ]);
 
-        // if (auth('sanctum')->user()->candidate->profile_complete != 0) {
-        //     return response()->json(
-        //         ['message' => __('complete_your_profile_before_applying_to_jobs_add_your_information_resume_and_profile_picture_for_a_better_chance_of_getting_hired')], 500
-        //     );
-        // }
+        if (auth('sanctum')->user()->candidate->profile_complete != 0) {
+            return response()->json(
+                ['message' => __('complete_your_profile_before_applying_to_jobs_add_your_information_resume_and_profile_picture_for_a_better_chance_of_getting_hired')], 500
+            );
+        }
 
         if (!CandidateResume::where('id', $request->resume_id)->where('candidate_id', auth('sanctum')->user()->candidate->id)->exists()) {
             return $this->respondError('You can not apply on this job. Because this resume is not yours');

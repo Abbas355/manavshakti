@@ -44,8 +44,8 @@ trait JobAble
 
         // Get featured jobs with job_type_id = 2
         $featured_jobs = $this->filterJobs($request)->where('job_type_id', 2)->latest()->where('featured', 1)->take(18)->get();
-    } elseif ($request->route()->getName() === 'website.work')
-    //($request->has('job_type_id') && $request->job_type_id == 2) 
+    } 
+    elseif ($request->route()->getName() === 'website.work') 
     {
         // For non-authenticated users, show only job_type_id = 2
         $filteredJobs = $filteredJobs->where('job_type_id', 2)->latest();
