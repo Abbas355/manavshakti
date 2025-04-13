@@ -65,3 +65,55 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+    <script>
+        function loadMoreJobs() {
+            let currentUrl = window.location.href;
+            let urlWithoutQueryString = currentUrl.split('?')[0];
+            let queryString = window.location.search;
+
+            let id = parseInt(document.getElementById('load-more-button').getAttribute('data-id'));
+            let page = parseInt(document.getElementById('load-more-button').getAttribute('data-page'));
+
+            // Extract existing "keyword" and "location" parameters from the query string
+            let searchParams = new URLSearchParams(queryString);
+            let existingKeyword = searchParams.get('keyword');
+            let existingLocation = searchParams.get('location');
+
+            // Convert null values to empty strings if they are null
+            existingKeyword = existingKeyword === null ? '' : existingKeyword;
+            existingLocation = existingLocation === null ? '' : existingLocation;
+
+            // Construct the updated query string with all parameters
+            let updatedQueryString = `?page=${page}&id=${id}&keyword=${existingKeyword}&location=${existingLocation}`;
+            let newUrl = `${urlWithoutQueryString.replace('/candidate/works', '/loadmore')}${updatedQueryString}`;
+
+    
+
+            $('#load-more-button').prop('disabled', true).text('Loading...');
+            axios.get(newUrl).then((response) => {
+                $('#mix-job').append(response.data);
+                $('#load-more-button').prop('disabled', false).text('Load More');
+                let newId = parseInt(document.getElementById('get-id-page').getAttribute('data-id'));
+                document.getElementById('load-more-button').setAttribute('data-id', newId);
+                if (newId == 0) {
+                    document.getElementById('load-more-button').setAttribute('data-page', page + 1);
+                }
+                $('#get-id-page').remove();
+            }).catch((error) => {
+                $('#load-more-button').prop('disabled', true).text('No jobs found').removeClass('btn-primary')
+                    .addClass('btn-secondary');
+            })
+        }
+
+        $(document).ready(function() {
+            $('#load-more-button').click(function(e) {
+                e.preventDefault();
+                loadMoreJobs();
+            });
+        });
+    </script>
+
+    
+@endsection

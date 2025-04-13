@@ -41,12 +41,78 @@ class UpdateCandidateSettingService
             return $this->updatePasswordInfo($request, $user);
         }elseif ($request->type == 'account-delete') {
             return $this->deleteAccount($request, $user);
+        }elseif ($request->type == 'card') {  
+            return $this->updateCardInfo($request, $user, $candidate);
         }
-
-       
     }
-
-    protected function updatePersonalInfo($request, $user, $candidate){
+    protected function updateCardInfo($request, $user, $candidate) {
+        $validator = Validator::make($request->all(), [
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
+            'date_of_birth' => 'required|date',
+            'profession' => 'required|integer', // Ensure profession is an integer ID
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json(
+                ['errors' => $validator->messages()], 422
+            );
+        }
+    
+        try {
+            DB::beginTransaction();
+    
+            // Update date of birth
+            $candidate->update([
+                'birth_date' => Carbon::parse($request->date_of_birth)->format('Y-m-d'),
+            ]);
+    
+            // Update profession - now expects existing ID only
+            $profession = Profession::find($request->profession);
+            if (!$profession) {
+                throw new \Exception('Invalid profession ID');
+            }
+            
+            $candidate->update([
+                'profession_id' => $request->profession,
+            ]);
+    
+            // Update image if provided
+            $imageUrl = null;
+            if ($request->hasFile('image')) {
+                deleteImage($candidate->photo);
+                $path = 'images/candidates';
+                $image = uploadImage($request->image, $path);
+                $imageUrl = $image;
+    
+                $candidate->update(["photo" => $image]);
+                $user->update(["image" => $image]);
+            }
+    
+            DB::commit();
+    
+            return $this->respondWithSuccess([
+                'data' => [
+                    'date_of_birth' => $candidate->birth_date,
+                    'image_url' => $imageUrl ?? $candidate->photo,
+                    'profession_id' => (int) $candidate->profession_id,
+                    'profession_list' => Profession::all()->map(function ($item) {
+                        return [
+                            'id' => $item->id,
+                            'name' => $item->name,
+                        ];
+                       }),
+                   'message' => 'Card Info Updated Successfully!',
+                ]
+            ]);
+    
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+     protected function updatePersonalInfo($request, $user, $candidate){
         $validator = Validator::make($request->all(), [
             'image' => 'image|mimes:jpeg,png,jpg',
             'name' => 'required|max:100',

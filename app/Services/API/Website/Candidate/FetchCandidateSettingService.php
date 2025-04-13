@@ -19,8 +19,9 @@ class FetchCandidateSettingService
     public function execute($request){
         $candidate_user = auth('sanctum')->user();
         $candidate = $candidate_user->candidate;
-
-        if ($request->type == 'personal') {
+        if($request->type=='card'){
+            return $this->getCardInfo($candidate_user,$candidate);
+        } elseif ($request->type == 'personal') {
             return $this->getPersonalInfo($candidate_user, $candidate);
         }elseif ($request->type == 'profile') {
             return $this->getProfileInfo($candidate);
@@ -31,6 +32,22 @@ class FetchCandidateSettingService
         }
     }
 
+
+    protected function getCardInfo($candidate_user, $candidate){
+        return $this->respondWithSuccess([
+            'data' => [
+                'image_url' => $candidate_user->image_url,
+                'profession_id' => (int) $candidate->profession_id,
+                'profession_list' => Profession::all()->map(function ($item) {
+                    return [
+                        'id' => $item->id,
+                        'name' => $item->name,
+                    ];
+                }),
+                'date_of_birth' => formatTime($candidate->birth_date, 'Y-m-d'),
+            ]
+        ]);
+    }
     protected function getPersonalInfo($candidate_user, $candidate){
         return $this->respondWithSuccess([
             'data' => [

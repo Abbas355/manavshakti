@@ -321,6 +321,17 @@
                     <div class="job-desc">
                         {!! $job->description !!}
                     </div>
+                    
+          {{-- Display Attachment --}}
+              @if ($job->attachment)
+                    <div class="attachment-section tw-mt-6">
+                        <h5 class="tw-text-lg tw-font-semibold tw-mb-4">{{ __('attachment') }}</h5>
+                        <a href="{{ asset($job->attachment) }}" target="_blank" class="tw-inline-flex tw-items-center tw-text-blue-500 hover:tw-text-blue-700">
+                            <x-svg.download-icon class="tw-w-5 tw-h-5 tw-mr-2" />
+                            {{ __('download_attachment') }}
+                        </a>
+                    </div>
+                @endif
                 </div>
 
                 <div class="col-lg-5">

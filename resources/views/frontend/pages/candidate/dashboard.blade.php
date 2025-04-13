@@ -17,12 +17,12 @@
                                 <p class="m-0 r-c">{{ __('here_is_your_daily_activities_career_opportunities') }}
                                 </p>
                             </div>
-                            <!-- Dropdown Role Switch -->
-                             <div class="role-switch-container">
-   @php
-        // Mapping roles for display
-        $roleDisplayName = auth()->user()->role === 'candidate' ? 'Candidate' : 'Contractor';
-    @endphp
+            <!-- Dropdown Role Switch -->
+        <div class="role-switch-container">
+                  @php
+                   // Mapping roles for display
+                     $roleDisplayName = auth()->user()->role === 'candidate' ? 'Candidate' : 'Contractor';
+                 @endphp
 
     <button class="btn btn-primary dropdown-toggle" id="roleDropdown" data-bs-toggle="dropdown" aria-expanded="false">
     Current Role: <span id="currentRoleText">{{ $roleDisplayName }}</span>

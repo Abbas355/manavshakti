@@ -69,7 +69,6 @@ class LoginController extends Controller
 
         if ($this->attemptLogin($request)) {
             $user = Auth::user();
-            echo $user->first_role;
             if ($user->first_role != 'company') {
                 Auth::logout();
                 return redirect()->away('https://play.google.com/store/apps/details?id=com.mit.plagremoverpro');

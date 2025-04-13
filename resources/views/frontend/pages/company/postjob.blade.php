@@ -20,7 +20,7 @@
                         <h2 class="tw-text-2xl tw-font-medium tw-text-[#18191C] tw-mb-8">
                             {{ __('post_a_job') }}
                         </h2>
-                        <form action="{{ route('company.job.store') }}" method="POST" class="rt-from">
+                        <form action="{{ route('company.job.store') }}" method="POST" enctype="multipart/form-data" class="rt-from">
                             @csrf
                             <div class="post-job-item rt-mb-15 tw-w-full tw-overflow-hidden">
                                 <div class="row">
@@ -220,15 +220,17 @@
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <!-- Your other input fields here -->
     
-    <!-- <div class="col-lg-6 col-md-6 rt-mb-20">
+    <div class="col-lg-6 col-md-6 rt-mb-20">
         <label for="attachment" class="tw-text-sm tw-mb-2">{{ __('Upload Attachment') }}</label>
 
+        <!-- Custom File Upload Section -->
         <div class="file-upload-container">
+            <!-- Hidden File Input -->
             <input type="file" name="attachment" id="attachment" class="form-control @error('attachment') is-invalid @enderror"
                    accept=".pdf,.doc,.docx,.jpg,.png" aria-label="Upload Attachment" style="display: none;" onchange="updateFileName()">
 
+            <!-- Custom Placeholder or Upload Attachment text -->
             <label for="attachment" class="file-placeholder" id="file-placeholder">
                 {{ __('Choose a file (PDF, DOC, DOCX, JPG, PNG)') }}
             </label>
@@ -237,30 +239,9 @@
         @error('attachment')
             <span class="error invalid-feedback">{{ $message }}</span>
         @enderror
-    </div> -->
-
-                    
-                    <!-- Attachment Upload Field -->
-<div class="col-lg-6 col-md-6 rt-mb-20">
-    <label for="attachment" class="tw-text-sm tw-mb-2">{{ __('Upload Attachment') }}</label>
-
-    <!-- Custom File Upload Section -->
-    <div class="file-upload-container">
-        <!-- Hidden File Input -->
-        <input type="file" name="attachment" id="attachment" class="form-control @error('attachment') is-invalid @enderror"
-               accept=".pdf,.doc,.docx,.jpg,.png" aria-label="Upload Attachment" style="display: none;" onchange="updateFileName()">
-
-        <!-- Custom Placeholder or Upload Attachment text -->
-        <label for="attachment" class="file-placeholder" id="file-placeholder">
-            {{ __('Choose a file (PDF, DOC, DOCX, JPG, PNG)') }}
-        </label>
     </div>
-
-    @error('attachment')
-        <span class="error invalid-feedback">{{ $message }}</span>
-    @enderror
-</div>
-
+                    
+           
 <!-- Custom Styles -->
 <style>
     /* Placeholder style */
@@ -293,12 +274,13 @@
 
 <!-- JavaScript to update label when file is selected -->
 <script>
-    function updateFileName() {
-        var input = document.getElementById('attachment');
-        var fileName = input.files.length > 0 ? input.files[0].name : "{{ __('Choose a file (PDF, DOC, DOCX, JPG, PNG)') }}";
-        document.getElementById('file-placeholder').textContent = fileName;
-    }
+function updateFileName() {
+    var input = document.getElementById('attachment');
+    var fileName = input.files.length > 0 ? input.files[0].name : "{{ __('Choose a file (PDF, DOC, DOCX, JPG, PNG)') }}";
+    document.getElementById('file-placeholder').textContent = fileName;
+}
 </script>
+
 
 
                 
