@@ -81,7 +81,7 @@ Route::controller(AuthController::class)->group(function () {
     // User OTP Verification
     Route::get('/user_phone', 'getUserPhoneNumber');
     Route::put('/user/verify', 'isUserVerified');
-    Route::get('/user-isverify', 'getVerifiedUser');
+    Route::put('/user/cardComplete', 'isCompleteCard');
 });
 
 // Cadidate and Company common apis

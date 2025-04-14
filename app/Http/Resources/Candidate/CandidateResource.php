@@ -20,9 +20,10 @@ class CandidateResource extends JsonResource
         }
         return [
             "id" => $this->id,
-            "username" => $this->user->username,
+            'user_id' => $this->user_id,
             "phone_number"=>$this->user->phone_number,
             "is_verified"=>$this->user->is_verified,
+            "is_card_complete"=>$this->user->is_card_complete,
             "first_role"=>$this->user->first_role,
             "email" => $this->user->email,
             "role" => $this->user->role,
@@ -31,7 +32,7 @@ class CandidateResource extends JsonResource
             "last_name" => $this->last_name,
             "role_id" => $this->role_id,
             "profession_id" => $this->profession_id,
-            "profession_name" => $this->profession ? $this->profession->name : null, // Get profession name
+            "profession_name" => $this->profession->name, 
             "experience_id" => $this->experience_id,
             "education_id" => $this->education_id,
             "title" => $this->title,
@@ -40,7 +41,6 @@ class CandidateResource extends JsonResource
             "cv" => $this->cv,
             "bio" => $this->bio,
             "marital_status" => $this->marital_status,
-            "birth_date" => $this->birth_date,
             "birth_date" => $this->birth_date,
             "cv_visibility" => $this->cv_visibility,
             "profile_complete" => $this->profile_complete,

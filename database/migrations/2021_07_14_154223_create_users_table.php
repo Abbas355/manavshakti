@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_demo_field')->default(false);
             $table->string('phone_number')->unique()->nullable(); 
             $table->boolean('is_verified')->default(false);
+            $table->boolean('is_card_complete')->default(false)->after('is_verified');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -298,7 +298,18 @@
             // Construct the updated query string with all parameters
             let updatedQueryString = `?page=${page}&id=${id}&keyword=${existingKeyword}&location=${existingLocation}`;
 
-            let newUrl = `${urlWithoutQueryString.replace('/jobs', '/loadmore')}${updatedQueryString}`;
+            //let newUrl = `${urlWithoutQueryString.replace('/jobs', '/loadmore')}${updatedQueryString}`;
+           // let newUrl = `${urlWithoutQueryString.replace('/works', '/loadmore')}${updatedQueryString}`;
+
+           let newUrl;
+    if (urlWithoutQueryString.includes('/jobs')) {
+        newUrl = `${urlWithoutQueryString.replace('/jobs', '/loadmore')}${updatedQueryString}`;
+    } else if (urlWithoutQueryString.includes('/works')) {
+        newUrl = `${urlWithoutQueryString.replace('/works', '/loadmore')}${updatedQueryString}`;
+    } else {
+        // Fallback to a default URL if neither /jobs nor /works is found
+        newUrl = `${urlWithoutQueryString}/loadmore${updatedQueryString}`;
+    }
 
             $('#load-more-button').prop('disabled', true).text('Loading...');
             axios.get(newUrl).then((response) => {

@@ -168,8 +168,8 @@ Route::controller(WebsiteController::class)->name('website.')->group(function ()
     Route::get('/careerjet/jobs', 'careerjetJobs')->name('careerjet.job');
     Route::get('/indeed/jobs', 'indeedJobs')->name('indeed.job');
     Route::get('/jobs', 'jobs')->name('job');
-    Route::get('/works', 'jobs')->name('work'); // where job_type_id =2
-    Route::get('/loadmore', 'loadmore');
+    Route::get('/works', 'jobs')->name('work'); 
+    Route::get('/loadmore', 'loadmor');
     Route::get('/jobs/category/{category}', 'jobsCategory')->name('job.category.slug');
     Route::get('/job/{job:slug}', 'jobDetails')->name('job.details');
     Route::get('/jobs/{job:slug}/bookmark', 'toggleBookmarkJob')->name('job.bookmark')->middleware('user_active');

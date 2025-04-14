@@ -12,16 +12,16 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone_number')->unique()->nullable();
-            $table->boolean('is_verified')->default(false);
+            $table->boolean('is_card_complete')
+                  ->default(false)
+                  ->after('is_verified');
         });
     }
     
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['phone_number', 'is_verified',]);
+            $table->dropColumn('is_card_complete');
         });
     }
-    
 };

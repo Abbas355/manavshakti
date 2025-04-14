@@ -27,7 +27,7 @@
                </span>
                </span>
               </a>
-             </li>
+            </li>
 
             <li>
                 <a class="{{ request()->routeIs('candidate.appliedjob') ? 'active' : '' }}"

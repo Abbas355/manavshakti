@@ -27,7 +27,49 @@ class AuthController extends Controller
 {
     use ApiResponseHelpers;
 
-    public function login(Request $request){
+    public function login(Request $request)
+{
+    $request->validate([
+        'login' => 'required', // Can be email or phone_number
+        'password' => 'required'
+    ]);
+
+    // Determine if login is email or phone_number
+    $field = filter_var($request->login, FILTER_VALIDATE_EMAIL) 
+        ? 'email' 
+        : 'phone_number';
+
+    // Check if the user exists with the given credential
+    $user = User::where($field, $request->login)->first();
+
+    if (!$user) {
+        return $this->respondUnAuthenticated('Invalid credentials');
+    }
+
+    // Verify password
+    if (!Hash::check($request->password, $user->password)) {
+        return $this->respondUnAuthenticated('Invalid credentials');
+    }
+
+    // Check if user is active
+    if (!$user->status) {
+        return $this->respondUnAuthenticated('Your account is inactive');
+    }
+
+    // Create token
+    $token = $user->createToken('job-pilot')->plainTextToken;
+
+    return $this->respondWithSuccess([
+        'data' => [
+            'token' => $token,
+            'message' => 'Login Succeeded',
+            'user' => $user->role == 'candidate' 
+                ? new CandidateResource($user->candidate) 
+                : new CompanyResource($user->company)
+        ]
+    ]);
+}
+  /*  public function login(Request $request){
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
@@ -47,7 +89,7 @@ class AuthController extends Controller
         }else{
             return $this->respondUnAuthenticated('Invalid Credentials');
         }
-    }
+    }*/
 
 
     public function getUserInfo(Request $request)
@@ -138,11 +180,19 @@ class AuthController extends Controller
                 }
             }
         }
-
+        $token = $user->createToken('job-pilot')->plainTextToken;
         if ($user) {
             return $this->respondWithSuccess([
-                'data' => $user,
-                'message' => 'Registration Succeeded'
+                'data' => [
+                    'token' => $token,
+                    'message' => 'Registration Succeeded',
+                    'user' => $user->role == 'candidate' 
+                         ? new CandidateResource($user->candidate) 
+                         : new CompanyResource($user->company)
+        ]
+                // 'data' => $user,
+                // 'token' => $token,
+                // 'message' => 'Registration Succeeded'
             ]);
         }
 
@@ -180,6 +230,39 @@ public function isUserVerified(Request $request)
         ],
     ], 200);
 }    
+
+
+public function isCompleteCard(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'is_card_complete' => 'required' // Accepts true or false
+    ]);
+
+    $email = $request->input('email');
+
+    $user = User::where('email', $email)->first();
+
+    if (!$user) {
+        return response()->json([
+            'success' => false,
+            'message' => 'User not found',
+        ], 404);
+    }
+
+    // Convert 'is_complete_card' to a boolean
+    $user->is_card_complete = filter_var($request->input('is_card_complete'), FILTER_VALIDATE_BOOLEAN);
+    $user->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'User complete card status updated successfully',
+        'data' => [
+            'is_card_complete' => $user->is_card_complete,
+        ],
+    ], 200);
+}
+
 
     public function profile()
     {
