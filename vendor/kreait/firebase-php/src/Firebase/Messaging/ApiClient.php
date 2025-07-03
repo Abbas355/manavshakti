@@ -6,12 +6,15 @@ namespace Kreait\Firebase\Messaging;
 
 use Beste\Json;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Pool;
 use GuzzleHttp\Promise\PromiseInterface;
-use Iterator;
+use Kreait\Firebase\Exception\FirebaseException;
+use Kreait\Firebase\Exception\MessagingApiExceptionConverter;
+use Kreait\Firebase\Exception\MessagingException;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use Throwable;
 
 /**
  * @internal
@@ -23,6 +26,7 @@ class ApiClient
         private readonly string $projectId,
         private readonly RequestFactoryInterface $requestFactory,
         private readonly StreamFactoryInterface $streamFactory,
+        private readonly MessagingApiExceptionConverter $errorHandler,
     ) {
     }
 
@@ -44,7 +48,6 @@ class ApiClient
         $body = $this->streamFactory->createStream(Json::encode($payload));
 
         return $request
-            ->withProtocolVersion('2.0')
             ->withBody($body)
             ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withHeader('Content-Length', (string) $body->getSize())
@@ -52,13 +55,29 @@ class ApiClient
     }
 
     /**
-     * @param list<RequestInterface>|Iterator<RequestInterface> $requests
-     * @param array<string, mixed> $config
+     * @param array<string, mixed> $options
+     *
+     * @throws FirebaseException
+     * @throws MessagingException
      */
-    public function pool(array|Iterator $requests, array $config): PromiseInterface
+    public function send(RequestInterface $request, array $options = []): ResponseInterface
     {
-        $pool = new Pool($this->client, $requests, $config);
+        try {
+            return $this->client->send($request, $options);
+        } catch (Throwable $e) {
+            throw $this->errorHandler->convertException($e);
+        }
+    }
 
-        return $pool->promise();
+    /**
+     * @param array<string, mixed> $options
+     */
+    public function sendAsync(RequestInterface $request, array $options = []): PromiseInterface
+    {
+        return $this->client->sendAsync($request, $options)
+            ->then(null, function (Throwable $e): never {
+                throw $this->errorHandler->convertException($e);
+            })
+        ;
     }
 }

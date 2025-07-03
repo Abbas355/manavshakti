@@ -17,7 +17,6 @@
 
 namespace Google\Service\ArtifactRegistry\Resource;
 
-use Google\Service\ArtifactRegistry\DownloadFileResponse;
 use Google\Service\ArtifactRegistry\GoogleDevtoolsArtifactregistryV1File;
 use Google\Service\ArtifactRegistry\ListFilesResponse;
 
@@ -31,20 +30,6 @@ use Google\Service\ArtifactRegistry\ListFilesResponse;
  */
 class ProjectsLocationsRepositoriesFiles extends \Google\Service\Resource
 {
-  /**
-   * Download a file. (files.download)
-   *
-   * @param string $name Required. The name of the file to download.
-   * @param array $optParams Optional parameters.
-   * @return DownloadFileResponse
-   * @throws \Google\Service\Exception
-   */
-  public function download($name, $optParams = [])
-  {
-    $params = ['name' => $name];
-    $params = array_merge($params, $optParams);
-    return $this->call('download', [$params], DownloadFileResponse::class);
-  }
   /**
    * Gets a file. (files.get)
    *

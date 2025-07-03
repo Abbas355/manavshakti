@@ -37,7 +37,6 @@ class SubscriptionLinking extends \Google\Service
 
 
   public $publications_readers;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the SubscriptionLinking service.
@@ -50,7 +49,6 @@ class SubscriptionLinking extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://readerrevenuesubscriptionlinking.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://readerrevenuesubscriptionlinking.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

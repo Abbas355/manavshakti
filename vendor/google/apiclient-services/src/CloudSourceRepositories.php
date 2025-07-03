@@ -49,7 +49,6 @@ class CloudSourceRepositories extends \Google\Service
 
   public $projects;
   public $projects_repos;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudSourceRepositories
@@ -63,7 +62,6 @@ class CloudSourceRepositories extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://sourcerepo.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://sourcerepo.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

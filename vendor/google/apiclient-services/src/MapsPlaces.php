@@ -55,7 +55,6 @@ class MapsPlaces extends \Google\Service
 
   public $places;
   public $places_photos;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the MapsPlaces service.
@@ -68,7 +67,6 @@ class MapsPlaces extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://places.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://places.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

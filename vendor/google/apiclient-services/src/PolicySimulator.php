@@ -59,7 +59,6 @@ class PolicySimulator extends \Google\Service
   public $projects_locations_replays;
   public $projects_locations_replays_operations;
   public $projects_locations_replays_results;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the PolicySimulator service.
@@ -72,7 +71,6 @@ class PolicySimulator extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://policysimulator.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://policysimulator.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

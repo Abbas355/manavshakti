@@ -48,7 +48,6 @@ class ServiceUsage extends \Google\Service
 
   public $operations;
   public $services;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the ServiceUsage service.
@@ -61,7 +60,6 @@ class ServiceUsage extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://serviceusage.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://serviceusage.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

@@ -40,7 +40,6 @@ class HomeGraphService extends \Google\Service
 
   public $agentUsers;
   public $devices;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the HomeGraphService service.
@@ -53,7 +52,6 @@ class HomeGraphService extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://homegraph.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://homegraph.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

@@ -45,7 +45,6 @@ class AnalyticsHub extends \Google\Service
   public $projects_locations_dataExchanges;
   public $projects_locations_dataExchanges_listings;
   public $projects_locations_subscriptions;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the AnalyticsHub service.
@@ -58,7 +57,6 @@ class AnalyticsHub extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://analyticshub.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://analyticshub.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

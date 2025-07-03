@@ -50,7 +50,6 @@ class AndroidManagement extends \Google\Service
   public $enterprises_webTokens;
   public $provisioningInfo;
   public $signupUrls;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the AndroidManagement service.
@@ -63,7 +62,6 @@ class AndroidManagement extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://androidmanagement.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://androidmanagement.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

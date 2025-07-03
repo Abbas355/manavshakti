@@ -46,7 +46,6 @@ class FirebaseHosting extends \Google\Service
 
   public $operations;
   public $projects_sites_customDomains_operations;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the FirebaseHosting service.
@@ -59,7 +58,6 @@ class FirebaseHosting extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://firebasehosting.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://firebasehosting.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

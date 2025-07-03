@@ -152,8 +152,6 @@ class Table extends \Google\Collection
    * @var string[]
    */
   public $resourceTags;
-  protected $restrictionsType = RestrictionConfig::class;
-  protected $restrictionsDataType = '';
   protected $schemaType = TableSchema::class;
   protected $schemaDataType = '';
   /**
@@ -724,20 +722,6 @@ class Table extends \Google\Collection
   public function getResourceTags()
   {
     return $this->resourceTags;
-  }
-  /**
-   * @param RestrictionConfig
-   */
-  public function setRestrictions(RestrictionConfig $restrictions)
-  {
-    $this->restrictions = $restrictions;
-  }
-  /**
-   * @return RestrictionConfig
-   */
-  public function getRestrictions()
-  {
-    return $this->restrictions;
   }
   /**
    * @param TableSchema

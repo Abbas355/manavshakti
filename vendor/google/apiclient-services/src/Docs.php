@@ -51,7 +51,6 @@ class Docs extends \Google\Service
       "https://www.googleapis.com/auth/drive.readonly";
 
   public $documents;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Docs service.
@@ -64,7 +63,6 @@ class Docs extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://docs.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://docs.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

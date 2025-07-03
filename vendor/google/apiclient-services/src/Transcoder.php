@@ -41,7 +41,6 @@ class Transcoder extends \Google\Service
 
   public $projects_locations_jobTemplates;
   public $projects_locations_jobs;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Transcoder service.
@@ -54,7 +53,6 @@ class Transcoder extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://transcoder.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://transcoder.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

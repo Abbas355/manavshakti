@@ -57,7 +57,6 @@ class Games extends \Google\Service
   public $scores;
   public $snapshots;
   public $stats;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Games service.
@@ -70,7 +69,6 @@ class Games extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://games.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://games.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -457,17 +455,7 @@ class Games extends \Google\Service
         'recall',
         [
           'methods' => [
-            'lastTokenFromAllDeveloperGames' => [
-              'path' => 'games/v1/recall/developerGamesLastPlayerToken/{sessionId}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'sessionId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'linkPersona' => [
+            'linkPersona' => [
               'path' => 'games/v1/recall:linkPersona',
               'httpMethod' => 'POST',
               'parameters' => [],

@@ -44,7 +44,6 @@ class StreetViewPublish extends \Google\Service
   public $photoSequence;
   public $photoSequences;
   public $photos;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the StreetViewPublish service.
@@ -57,7 +56,6 @@ class StreetViewPublish extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://streetviewpublish.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://streetviewpublish.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

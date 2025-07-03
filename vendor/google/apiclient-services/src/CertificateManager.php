@@ -46,7 +46,6 @@ class CertificateManager extends \Google\Service
   public $projects_locations_dnsAuthorizations;
   public $projects_locations_operations;
   public $projects_locations_trustConfigs;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CertificateManager service.
@@ -59,7 +58,6 @@ class CertificateManager extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://certificatemanager.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://certificatemanager.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

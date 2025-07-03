@@ -40,7 +40,6 @@ class CloudScheduler extends \Google\Service
 
   public $projects_locations;
   public $projects_locations_jobs;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudScheduler service.
@@ -53,7 +52,6 @@ class CloudScheduler extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://cloudscheduler.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://cloudscheduler.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

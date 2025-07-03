@@ -42,7 +42,6 @@ class CloudFunctions extends \Google\Service
   public $projects_locations_functions;
   public $projects_locations_operations;
   public $projects_locations_runtimes;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudFunctions service.
@@ -55,7 +54,6 @@ class CloudFunctions extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://cloudfunctions.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://cloudfunctions.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';

@@ -39,7 +39,6 @@ class Digitalassetlinks extends \Google\Service
 
   public $assetlinks;
   public $statements;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Digitalassetlinks service.
@@ -52,7 +51,6 @@ class Digitalassetlinks extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://digitalassetlinks.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://digitalassetlinks.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

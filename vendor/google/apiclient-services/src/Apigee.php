@@ -125,7 +125,6 @@ class Apigee extends \Google\Service
   public $organizations_sites_apicategories;
   public $organizations_sites_apidocs;
   public $projects;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Apigee service.
@@ -138,7 +137,6 @@ class Apigee extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://apigee.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://apigee.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

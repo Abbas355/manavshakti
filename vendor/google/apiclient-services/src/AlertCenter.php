@@ -42,7 +42,6 @@ class AlertCenter extends \Google\Service
   public $alerts;
   public $alerts_feedback;
   public $v1beta1;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the AlertCenter service.
@@ -55,7 +54,6 @@ class AlertCenter extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://alertcenter.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://alertcenter.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1beta1';

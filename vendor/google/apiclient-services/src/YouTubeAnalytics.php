@@ -53,7 +53,6 @@ class YouTubeAnalytics extends \Google\Service
   public $groupItems;
   public $groups;
   public $reports;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the YouTubeAnalytics service.
@@ -66,7 +65,6 @@ class YouTubeAnalytics extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://youtubeanalytics.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://youtubeanalytics.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';

@@ -232,17 +232,7 @@ class TypeParser
 				);
 			}
 
-			$type = $this->enrichWithAttributes(
-				$tokens,
-				new Ast\Type\ConstTypeNode($constExpr),
-				$startLine,
-				$startIndex
-			);
-			if ($tokens->isCurrentTokenType(Lexer::TOKEN_OPEN_SQUARE_BRACKET)) {
-				$type = $this->tryParseArrayOrOffsetAccess($tokens, $type);
-			}
-
-			return $type;
+			return $this->enrichWithAttributes($tokens, new Ast\Type\ConstTypeNode($constExpr), $startLine, $startIndex);
 		} catch (LogicException $e) {
 			throw new ParserException(
 				$currentTokenValue,
@@ -743,14 +733,14 @@ class TypeParser
 				);
 			}
 
-			$type = $this->enrichWithAttributes(
-				$tokens,
-				new Ast\Type\ConstTypeNode($constExpr),
-				$startLine,
-				$startIndex
-			);
+			$type = new Ast\Type\ConstTypeNode($constExpr);
 			if ($tokens->isCurrentTokenType(Lexer::TOKEN_OPEN_SQUARE_BRACKET)) {
-				$type = $this->tryParseArrayOrOffsetAccess($tokens, $type);
+				$type = $this->tryParseArrayOrOffsetAccess($tokens, $this->enrichWithAttributes(
+					$tokens,
+					$type,
+					$startLine,
+					$startIndex
+				));
 			}
 
 			return $type;

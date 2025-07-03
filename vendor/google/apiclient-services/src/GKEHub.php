@@ -48,7 +48,6 @@ class GKEHub extends \Google\Service
   public $projects_locations_scopes;
   public $projects_locations_scopes_namespaces;
   public $projects_locations_scopes_rbacrolebindings;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the GKEHub service.
@@ -61,7 +60,6 @@ class GKEHub extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://gkehub.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://gkehub.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

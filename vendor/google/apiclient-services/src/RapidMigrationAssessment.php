@@ -43,7 +43,6 @@ class RapidMigrationAssessment extends \Google\Service
   public $projects_locations_annotations;
   public $projects_locations_collectors;
   public $projects_locations_operations;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the RapidMigrationAssessment
@@ -57,7 +56,6 @@ class RapidMigrationAssessment extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://rapidmigrationassessment.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://rapidmigrationassessment.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

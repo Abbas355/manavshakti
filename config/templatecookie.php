@@ -30,9 +30,9 @@ return [
     'stripe_secret' => '',
     'stripe_active' => false,
 
-    'razorpay_key' => '',
-    'razorpay_secret' => '',
-    'razorpay_active' => false,
+    'razorpay_key' => '1234567890abcdefghijklmnop',
+    'razorpay_secret' => 'rzptest_ABC123456789',
+    'razorpay_active' => true,
 
     'paystack_key' => '',
     'paystack_secret' => '',

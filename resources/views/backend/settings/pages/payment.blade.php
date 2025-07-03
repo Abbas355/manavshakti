@@ -367,6 +367,106 @@
                 </form>
             </div>
         </div>
+
+        {{-- PayTM Setting --}}
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h3 class="card-title line-height-36">
+                {{ __('paytm_settings') }}
+                <a target="_blank" href="https://developer.paytm.com/docs/"><small>({{ __('get_help') }})</small></a>
+            </h3>
+        </div>
+    </div>
+    <div class="card-body">
+        <form class="form-horizontal" action="{{ route('settings.payment.update') }}" method="POST"
+            enctype="multipart/form-data">
+            @method('PUT')
+            @csrf
+            <input type="hidden" value="paytm" name="type">
+            <div class="form-group row">
+                <x-forms.label name="live_mode" class="col-sm-3" />
+                <div class="col-sm-9">
+                    <input {{ config('services.paytm-wallet.env') == 'production' ? 'checked' : '' }}
+                        type="checkbox" name="paytm_live_mode" data-bootstrap-switch value="1" data-on-text="{{ __('on') }}"
+                        data-off-text="{{ __('off') }}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <x-forms.label name="merchant_id" class="col-sm-3" />
+                <div class="col-sm-9">
+                    <input value="{{ config('services.paytm-wallet.merchant_id') }}" name="paytm_merchant_id"
+                        type="text" class="form-control @error('paytm_merchant_id') is-invalid @enderror"
+                        autocomplete="off">
+                    @error('paytm_merchant_id')
+                        <span class="invalid-feedback" role="alert"><span>{{ $message }}</span></span>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group row">
+                <x-forms.label name="merchant_key" class="col-sm-3" />
+                <div class="col-sm-9">
+                    <input value="{{ config('services.paytm-wallet.merchant_key') }}" name="paytm_merchant_key"
+                        type="text" class="form-control @error('paytm_merchant_key') is-invalid @enderror"
+                        autocomplete="off">
+                    @error('paytm_merchant_key')
+                        <span class="invalid-feedback" role="alert"><span>{{ $message }}</span></span>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group row">
+                <x-forms.label name="merchant_website" class="col-sm-3" />
+                <div class="col-sm-9">
+                    <input value="{{ config('services.paytm-wallet.merchant_website') }}" name="paytm_merchant_website"
+                        type="text" class="form-control @error('paytm_merchant_website') is-invalid @enderror"
+                        autocomplete="off">
+                    @error('paytm_merchant_website')
+                        <span class="invalid-feedback" role="alert"><span>{{ $message }}</span></span>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group row">
+                <x-forms.label name="industry_type" class="col-sm-3" />
+                <div class="col-sm-9">
+                    <input value="{{ config('services.paytm-wallet.industry_type') }}" name="paytm_industry_type"
+                        type="text" class="form-control @error('paytm_industry_type') is-invalid @enderror"
+                        autocomplete="off">
+                    @error('paytm_industry_type')
+                        <span class="invalid-feedback" role="alert"><span>{{ $message }}</span></span>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group row">
+                <x-forms.label name="channel" class="col-sm-3" />
+                <div class="col-sm-9">
+                    <input value="{{ config('services.paytm-wallet.channel') }}" name="paytm_channel"
+                        type="text" class="form-control @error('paytm_channel') is-invalid @enderror"
+                        autocomplete="off">
+                    @error('paytm_channel')
+                        <span class="invalid-feedback" role="alert"><span>{{ $message }}</span></span>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group row">
+                <x-forms.label name="status" class="col-sm-3" />
+                <div class="col-sm-9">
+                    <input {{ config('templatecookie.paytm_active') ? 'checked' : '' }} type="checkbox"
+                    name="paytm" data-bootstrap-switch value="1" data-on-text="{{ __('on') }}"
+                    data-off-text="{{ __('off') }}">
+                </div>
+            </div>
+            @if (userCan('setting.update'))
+                <div class="form-group row">
+                    <div class="offset-sm-3 col-sm-9">
+                        <button type="submit" class="btn btn-success"><i
+                                class="fas fa-sync"></i>
+                            {{ __('update') }}</button>
+                    </div>
+                </div>
+            @endif
+        </form>
+    </div>
+</div>
     </div>
 
     <div class="col-sm-6">

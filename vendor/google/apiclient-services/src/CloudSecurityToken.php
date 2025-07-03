@@ -38,7 +38,6 @@ class CloudSecurityToken extends \Google\Service
 
 
   public $v1;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudSecurityToken service.
@@ -51,7 +50,6 @@ class CloudSecurityToken extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://sts.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://sts.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

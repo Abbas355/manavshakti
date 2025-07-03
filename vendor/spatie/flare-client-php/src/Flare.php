@@ -40,7 +40,7 @@ class Flare
 
     protected ContextProviderDetector $contextDetector;
 
-    protected mixed $previousExceptionHandler = null;
+    protected $previousExceptionHandler = null;
 
     /** @var null|callable */
     protected $previousErrorHandler = null;
@@ -211,16 +211,15 @@ class Flare
 
     public function registerExceptionHandler(): self
     {
+        /** @phpstan-ignore-next-line */
         $this->previousExceptionHandler = set_exception_handler([$this, 'handleException']);
 
         return $this;
     }
 
-    public function registerErrorHandler(?int $errorLevels = null): self
+    public function registerErrorHandler(): self
     {
-        $this->previousErrorHandler = $errorLevels
-            ? set_error_handler([$this, 'handleError'], $errorLevels)
-            : set_error_handler([$this, 'handleError']);
+        $this->previousErrorHandler = set_error_handler([$this, 'handleError']);
 
         return $this;
     }
@@ -310,17 +309,13 @@ class Flare
         return $this;
     }
 
-    public function report(Throwable $throwable, callable $callback = null, Report $report = null, ?bool $handled = null): ?Report
+    public function report(Throwable $throwable, callable $callback = null, Report $report = null): ?Report
     {
         if (! $this->shouldSendReport($throwable)) {
             return null;
         }
 
         $report ??= $this->createReport($throwable);
-
-        if ($handled) {
-            $report->handled();
-        }
 
         if (! is_null($callback)) {
             call_user_func($callback, $report);
@@ -331,11 +326,6 @@ class Flare
         $this->sendReportToApi($report);
 
         return $report;
-    }
-
-    public function reportHandled(Throwable $throwable): ?Report
-    {
-        return $this->report($throwable, null, null, true);
     }
 
     protected function shouldSendReport(Throwable $throwable): bool
@@ -458,7 +448,6 @@ class Flare
                 ? new $singleMiddleware
                 : $singleMiddleware;
         }, $this->middleware);
-
 
         $report = (new Pipeline())
             ->send($report)

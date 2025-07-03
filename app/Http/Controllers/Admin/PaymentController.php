@@ -66,6 +66,9 @@ class PaymentController extends Controller
                 case 'iyzipay':
                     $this->iyzipayUpdate($request);
                     break;
+                case 'paytm':
+                    $this->paytmUpdate($request);
+                    break;
             }
 
             SetupGuide::where('task_name', 'payment_setting')->update(['status' => 1]);
@@ -394,6 +397,37 @@ class PaymentController extends Controller
             return back();
         }
     }
+
+    public function paytmUpdate(Request $request)
+{
+    $request->validate([
+        'paytm_merchant_id' => 'required',
+        'paytm_merchant_key' => 'required',
+        'paytm_merchant_website' => 'required',
+        'paytm_industry_type' => 'required',
+        'paytm_channel' => 'required',
+    ]);
+
+    try {
+        checkSetConfig('services.paytm-wallet.merchant_id', $request->paytm_merchant_id);
+        checkSetConfig('services.paytm-wallet.merchant_key', $request->paytm_merchant_key);
+        checkSetConfig('services.paytm-wallet.merchant_website', $request->paytm_merchant_website);
+        checkSetConfig('services.paytm-wallet.industry_type', $request->paytm_industry_type);
+        checkSetConfig('services.paytm-wallet.channel', $request->paytm_channel);
+        checkSetConfig('services.paytm-wallet.env', $request->paytm_live_mode ? 'production' : 'local');
+        checkSetConfig('templatecookie.paytm_active', $request->paytm ? true : false);
+
+        sleep(3);
+        Artisan::call('cache:clear');
+
+        flashSuccess(__('paytm_setting_updated_successfully'));
+
+        return redirect()->route('settings.payment')->send();
+    } catch (\Exception $e) {
+        flashError('An error occurred: '.$e->getMessage());
+        return back();
+    }
+}
 
     /**
      * Display a listing of the resource.

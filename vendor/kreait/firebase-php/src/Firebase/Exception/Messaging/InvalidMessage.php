@@ -15,7 +15,7 @@ final class InvalidMessage extends RuntimeException implements MessagingExceptio
     /**
      * @internal
      *
-     * @param array<mixed> $errors
+     * @param array<non-empty-string> $errors
      */
     public function withErrors(array $errors): self
     {

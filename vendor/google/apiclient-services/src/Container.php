@@ -49,7 +49,6 @@ class Container extends \Google\Service
   public $projects_zones_clusters;
   public $projects_zones_clusters_nodePools;
   public $projects_zones_operations;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Container service.
@@ -62,7 +61,6 @@ class Container extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://container.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://container.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

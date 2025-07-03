@@ -39,7 +39,6 @@ class TrafficDirectorService extends \Google\Service
       "https://www.googleapis.com/auth/cloud-platform";
 
   public $discovery;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the TrafficDirectorService
@@ -53,7 +52,6 @@ class TrafficDirectorService extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://trafficdirector.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://trafficdirector.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v3';

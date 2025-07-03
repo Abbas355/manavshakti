@@ -44,7 +44,6 @@ class SecretManager extends \Google\Service
   public $projects_locations_secrets_versions;
   public $projects_secrets;
   public $projects_secrets_versions;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the SecretManager service.
@@ -57,7 +56,6 @@ class SecretManager extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://secretmanager.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://secretmanager.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

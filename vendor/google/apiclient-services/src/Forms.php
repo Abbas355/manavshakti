@@ -56,7 +56,6 @@ class Forms extends \Google\Service
   public $forms;
   public $forms_responses;
   public $forms_watches;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Forms service.
@@ -69,7 +68,6 @@ class Forms extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://forms.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://forms.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

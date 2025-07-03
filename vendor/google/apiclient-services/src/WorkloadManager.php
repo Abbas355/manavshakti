@@ -48,7 +48,6 @@ class WorkloadManager extends \Google\Service
   public $projects_locations_insights;
   public $projects_locations_operations;
   public $projects_locations_rules;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the WorkloadManager service.
@@ -61,7 +60,6 @@ class WorkloadManager extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://workloadmanager.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://workloadmanager.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

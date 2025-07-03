@@ -293,7 +293,7 @@ public function isCompleteCard(Request $request)
 
         return $this->respondWithSuccess([
             'data' => [
-                'message' => 'We have emailed you password reset code',
+               'message' => 'We have emailed you password reset code',
 
                 // testing only should remove in production
                 'code' => $code

@@ -72,7 +72,6 @@ class BigtableAdmin extends \Google\Service
   public $projects_instances_tables;
   public $projects_instances_tables_authorizedViews;
   public $projects_locations;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the BigtableAdmin service.
@@ -85,7 +84,6 @@ class BigtableAdmin extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://bigtableadmin.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://bigtableadmin.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';

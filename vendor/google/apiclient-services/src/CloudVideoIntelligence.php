@@ -43,7 +43,6 @@ class CloudVideoIntelligence extends \Google\Service
   public $operations_projects_locations_operations;
   public $projects_locations_operations;
   public $videos;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudVideoIntelligence
@@ -57,7 +56,6 @@ class CloudVideoIntelligence extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://videointelligence.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://videointelligence.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

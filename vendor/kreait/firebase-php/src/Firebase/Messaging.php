@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Kreait\Firebase;
 
 use Beste\Json;
-use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Promise\Utils;
+use Iterator;
 use Kreait\Firebase\Exception\InvalidArgumentException;
 use Kreait\Firebase\Exception\Messaging\InvalidArgument;
 use Kreait\Firebase\Exception\Messaging\NotFound;
-use Kreait\Firebase\Exception\MessagingApiExceptionConverter;
 use Kreait\Firebase\Exception\MessagingException;
 use Kreait\Firebase\Messaging\ApiClient;
 use Kreait\Firebase\Messaging\AppInstance;
@@ -25,8 +25,6 @@ use Kreait\Firebase\Messaging\RegistrationToken;
 use Kreait\Firebase\Messaging\RegistrationTokens;
 use Kreait\Firebase\Messaging\SendReport;
 use Kreait\Firebase\Messaging\Topic;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
 use function array_key_exists;
@@ -38,11 +36,8 @@ use function array_map;
  */
 final class Messaging implements Contract\Messaging
 {
-    public function __construct(
-        private readonly ApiClient $messagingApi,
-        private readonly AppInstanceApiClient $appInstanceApi,
-        private readonly MessagingApiExceptionConverter $exceptionConverter,
-    ) {
+    public function __construct(private readonly ApiClient $messagingApi, private readonly AppInstanceApiClient $appInstanceApi)
+    {
     }
 
     public function send(Message|array $message, bool $validateOnly = false): array
@@ -53,18 +48,21 @@ final class Messaging implements Contract\Messaging
             throw new InvalidArgument('The given message is missing a target');
         }
 
-        $reports = $this->sendAll([$message], $validateOnly)->getItems();
-        $report = array_shift($reports);
-        assert($report instanceof SendReport);
+        $request = $this->messagingApi->createSendRequestForMessage($message, $validateOnly);
 
-        if ($report->isSuccess()) {
-            return $report->result() ?? [];
+        try {
+            $response = $this->messagingApi->send($request);
+        } catch (NotFound $e) {
+            $token = Json::decode(Json::encode($message), true)['token'] ?? null;
+
+            if ($token) {
+                throw NotFound::becauseTokenNotFound($token, $e->errors());
+            }
+
+            throw $e;
         }
 
-        $error = $report->error();
-        assert($error instanceof MessagingException);
-
-        throw $error;
+        return Json::decode((string) $response->getBody(), true);
     }
 
     public function sendMulticast($message, $registrationTokens, bool $validateOnly = false): MulticastSendReport
@@ -86,32 +84,35 @@ final class Messaging implements Contract\Messaging
     public function sendAll($messages, bool $validateOnly = false): MulticastSendReport
     {
         $messages = $this->ensureMessages($messages);
-        $requests = $this->createSendRequests($messages, $validateOnly);
-        $sendReports = array_fill(0, count($messages), null);
+        $promises = $this->createMessageRequestPromises($messages(), $validateOnly);
 
-        $config = [
-            'fulfilled' => function (ResponseInterface $response, int $index) use ($messages, &$sendReports) {
-                $message = $messages[$index];
+        $sendReports = Utils::settle($promises())
+            ->then(static function (array $responses) use ($messages) {
+                $messages = $messages();
+                $sendReports = [];
 
-                $json = Json::decode((string) $response->getBody(), true);
+                foreach ($responses as $response) {
+                    $message = CloudMessage::fromArray(
+                        Json::decode(Json::encode($messages->current()), true),
+                    );
 
-                $sendReports[$index] = SendReport::success($message->target(), $json, $message);
-            },
-            'rejected' => function (RequestException $reason, int $index) use ($messages, &$sendReports) {
-                $message = $messages[$index];
+                    if ($response['state'] === PromiseInterface::FULFILLED) {
+                        $json = Json::decode((string) $response['value']->getBody(), true);
 
-                $error = $this->exceptionConverter->convertException($reason);
+                        $sendReports[] = SendReport::success($message->target(), $json, $message);
+                    }
 
-                $sendReports[$index] = SendReport::failure($message->target(), $error, $message);
-            },
-        ];
+                    if ($response['state'] === PromiseInterface::REJECTED) {
+                        $sendReports[] = SendReport::failure($message->target(), $response['reason'], $message);
+                    }
 
-        $this->messagingApi->pool($requests(), $config)->wait();
+                    $messages->next();
+                }
 
-        // $sendReports has the same size as $messages, and each key is set by the `fulfilled` and `rejected`
-        // handlers above. The only way I could imagine a `null` value in the reports is when a request
-        // didn't return a response at all. I don't think it's possible, so letting PHPStan know.
-        assert(!in_array(null, $sendReports, true));
+                return $sendReports;
+            })
+            ->wait()
+        ;
 
         return MulticastSendReport::withItems($sendReports);
     }
@@ -221,17 +222,19 @@ final class Messaging implements Contract\Messaging
     /**
      * @param iterable<Message|array<non-empty-string, mixed>> $messages
      *
-     * @return list<CloudMessage>
+     * @return callable(): Iterator<Message>
      */
-    private function ensureMessages(iterable $messages): array
+    private function ensureMessages(iterable $messages): callable
     {
-        $ensured = [];
-
-        foreach ($messages as $message) {
-            $ensured[] = $this->makeMessage($message);
-        }
-
-        return $ensured;
+        return function () use ($messages) {
+            foreach ($messages as $message) {
+                if ($message instanceof Message) {
+                    yield $message;
+                } else {
+                    yield $this->makeMessage($message);
+                }
+            }
+        };
     }
 
     /**
@@ -239,25 +242,25 @@ final class Messaging implements Contract\Messaging
      *
      * @throws InvalidArgumentException
      */
-    private function makeMessage(Message|array $message): CloudMessage
+    private function makeMessage(Message|array $message): Message
     {
         $message = $message instanceof Message ? $message : CloudMessage::fromArray($message);
 
         $message = (new SetApnsPushTypeIfNeeded())($message);
-        $message = (new SetApnsContentAvailableIfNeeded())($message);
 
-        return CloudMessage::fromArray(Json::decode(JSON::encode($message->jsonSerialize()), true));
+        return (new SetApnsContentAvailableIfNeeded())($message);
     }
 
     /**
-     * @param iterable<CloudMessage> $messages
-     * @return callable(): list<RequestInterface>
+     * @param iterable<Message> $messages
      */
-    private function createSendRequests(iterable $messages, bool $validateOnly): callable
+    private function createMessageRequestPromises(iterable $messages, bool $validateOnly): callable
     {
         return function () use ($messages, $validateOnly) {
             foreach ($messages as $message) {
-                yield $this->messagingApi->createSendRequestForMessage($message, $validateOnly);
+                $request = $this->messagingApi->createSendRequestForMessage($message, $validateOnly);
+
+                yield $this->messagingApi->sendAsync($request);
             }
         };
     }

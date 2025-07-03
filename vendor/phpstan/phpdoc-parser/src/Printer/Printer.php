@@ -141,6 +141,7 @@ final class Printer
 			CallableTypeNode::class,
 			UnionTypeNode::class,
 			IntersectionTypeNode::class,
+			ConstTypeNode::class,
 			NullableTypeNode::class,
 		],
 	];
@@ -511,6 +512,7 @@ final class Printer
 			$type instanceof CallableTypeNode
 			|| $type instanceof UnionTypeNode
 			|| $type instanceof IntersectionTypeNode
+			|| $type instanceof ConstTypeNode
 			|| $type instanceof NullableTypeNode
 		) {
 			return $this->wrapInParentheses($type);

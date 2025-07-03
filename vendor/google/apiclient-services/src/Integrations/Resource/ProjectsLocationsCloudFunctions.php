@@ -31,14 +31,13 @@ use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaCreateCloudFunctio
 class ProjectsLocationsCloudFunctions extends \Google\Service\Resource
 {
   /**
-   * Creates a cloud function project. (cloudFunctions.create)
+   * Creates an cloud function project. (cloudFunctions.create)
    *
    * @param string $parent Required. The project that the executed integration
    * belongs to.
    * @param GoogleCloudIntegrationsV1alphaCreateCloudFunctionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudIntegrationsV1alphaCreateCloudFunctionResponse
-   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudIntegrationsV1alphaCreateCloudFunctionRequest $postBody, $optParams = [])
   {

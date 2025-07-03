@@ -54,7 +54,6 @@ class CloudRetail extends \Google\Service
   public $projects_locations_catalogs_userEvents;
   public $projects_locations_operations;
   public $projects_operations;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudRetail service.
@@ -67,7 +66,6 @@ class CloudRetail extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://retail.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://retail.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';
@@ -95,10 +93,6 @@ class CloudRetail extends \Google\Service
                 'deviceType' => [
                   'location' => 'query',
                   'type' => 'string',
-                ],
-                'enableAttributeSuggestions' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ],
                 'entity' => [
                   'location' => 'query',

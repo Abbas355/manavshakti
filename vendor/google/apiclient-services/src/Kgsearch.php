@@ -37,7 +37,6 @@ class Kgsearch extends \Google\Service
 
 
   public $entities;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Kgsearch service.
@@ -50,7 +49,6 @@ class Kgsearch extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://kgsearch.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://kgsearch.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

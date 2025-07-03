@@ -46,7 +46,6 @@ class AndroidProvisioningPartner extends \Google\Service
   public $partners_devices;
   public $partners_vendors;
   public $partners_vendors_customers;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the AndroidProvisioningPartner
@@ -60,7 +59,6 @@ class AndroidProvisioningPartner extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://androiddeviceprovisioning.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://androiddeviceprovisioning.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

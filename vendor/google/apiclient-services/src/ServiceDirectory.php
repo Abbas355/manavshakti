@@ -43,7 +43,6 @@ class ServiceDirectory extends \Google\Service
   public $projects_locations_namespaces;
   public $projects_locations_namespaces_services;
   public $projects_locations_namespaces_services_endpoints;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the ServiceDirectory service.
@@ -56,7 +55,6 @@ class ServiceDirectory extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://servicedirectory.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://servicedirectory.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

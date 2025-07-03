@@ -54,7 +54,6 @@ class AccessContextManager extends \Google\Service
   public $operations;
   public $organizations_gcpUserAccessBindings;
   public $services;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the AccessContextManager service.
@@ -67,7 +66,6 @@ class AccessContextManager extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://accesscontextmanager.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://accesscontextmanager.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

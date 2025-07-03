@@ -73,7 +73,6 @@ class DLP extends \Google\Service
   public $projects_locations_storedInfoTypes;
   public $projects_locations_tableDataProfiles;
   public $projects_storedInfoTypes;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the DLP service.
@@ -86,7 +85,6 @@ class DLP extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://dlp.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://dlp.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';

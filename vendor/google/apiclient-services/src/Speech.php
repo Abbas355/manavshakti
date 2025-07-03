@@ -42,7 +42,6 @@ class Speech extends \Google\Service
   public $projects_locations_customClasses;
   public $projects_locations_phraseSets;
   public $speech;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Speech service.
@@ -55,7 +54,6 @@ class Speech extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://speech.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://speech.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

@@ -45,7 +45,6 @@ class FirebaseAppDistribution extends \Google\Service
   public $projects_apps_releases_operations;
   public $projects_groups;
   public $projects_testers;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the FirebaseAppDistribution
@@ -59,7 +58,6 @@ class FirebaseAppDistribution extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://firebaseappdistribution.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://firebaseappdistribution.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

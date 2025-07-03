@@ -94,8 +94,6 @@ class Dataset extends \Google\Collection
    * @var string
    */
   public $maxTimeTravelHours;
-  protected $restrictionsType = RestrictionConfig::class;
-  protected $restrictionsDataType = '';
   /**
    * @var bool
    */
@@ -426,20 +424,6 @@ class Dataset extends \Google\Collection
   public function getMaxTimeTravelHours()
   {
     return $this->maxTimeTravelHours;
-  }
-  /**
-   * @param RestrictionConfig
-   */
-  public function setRestrictions(RestrictionConfig $restrictions)
-  {
-    $this->restrictions = $restrictions;
-  }
-  /**
-   * @return RestrictionConfig
-   */
-  public function getRestrictions()
-  {
-    return $this->restrictions;
   }
   /**
    * @param bool

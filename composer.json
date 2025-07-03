@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1.0",
+        "anandsiddharth/laravel-paytm-wallet": "^2.0",
         "anhskohbo/no-captcha": "^3.4",
         "arcanedev/log-viewer": "~10",
         "astrotomic/laravel-translatable": "^11.11",
@@ -38,6 +39,7 @@
         "midtrans/midtrans-php": "^2.5",
         "mollie/laravel-mollie": "^2.19",
         "nwidart/laravel-modules": "8.2.*",
+        "paytm/paytmchecksum": "^1.1",
         "pusher/pusher-php-server": "^7.2",
         "razorpay/razorpay": "^2.8",
         "sentry/sentry-laravel": "^3.0",
