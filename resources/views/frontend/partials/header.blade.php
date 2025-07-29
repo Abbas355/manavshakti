@@ -1,7 +1,8 @@
+<!-- resources/views/frontend/partials/header.blade.php -->
 {{-- For testing environment  --}}
 @if (config('templatecookie.testing_mode'))
     @php
-        $headerCountries = Modules\Location\Entities\Country::select('id', 'name', 'slug', 'icon')->active()->get();
+        $headerCountries = Modules\Location\Entities\Country::select('id', 'name', 'slug', 'image')->active()->get(); // Updated to use 'image'
         $headerCurrencies = Modules\Currency\Entities\Currency::all();
         $languages = loadLanguage();
         $defaultLanguage = Modules\Language\Entities\Language::where('code', config('templatecookie.default_language'))->first();
@@ -292,60 +293,17 @@
                                         </a>
                                     </div>
                                 @endif
-                                @if ($setting->app_country_type === 'multiple_base')
-                                    <form action="{{ route('website.job') }}" method="GET" id="search-form">
-                                        <div class="tw-flex tw-w-full">
-                                            @php
-                                                $selected_country = session('selected_country');
-                                            @endphp
-                                            <div class="dropdown dropup tw-w-full">
-                                                <button
-                                                    class="btn tw-flex tw-justify-between tw-w-full tw-px-0 dropdown-toggle"
-                                                    type="button" id="" data-bs-toggle="dropdown"
-                                                    aria-expanded="false">
-                                                    <div>
-                                                        @if ($selected_country && selected_country())
-                                                            <i class="flag-icon {{ selected_country()->icon }}"></i>
-                                                            {{ selected_country()->name }}
-                                                        @else
-                                                            {{ __('all_country') }}
-                                                        @endif
-                                                    </div>
-                                                </button>
-
-                                                <ul class="dropdown-menu mx-height-400 overflow-auto tw-p-2"
-                                                    aria-labelledby="dropdownMenuButton1">
-                                                    <li>
-                                                        <a class="dropdown-item hover:tw-bg-[#F1F2F4] hover:tw-rounded-[4px]"
-                                                            href="{{ route('website.set.country') }}">
-                                                            <svg width="26" height="26" fill="none"
-                                                                stroke="currentColor" viewBox="0 0 24 24"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                    stroke-width="2"
-                                                                    d="M4 6h16M4 10h16M4 14h16M4 18h16">
-                                                                </path>
-                                                            </svg>
-                                                            <span class="marginleft">
-                                                                {{ __('all_country') }}
-                                                            </span>
-                                                        </a>
-                                                    </li>
-
-                                                    @foreach ($headerCountries as $country)
-                                                        <li id="lang-dropdown-item">
-                                                            <a class="dropdown-item hover:tw-bg-[#F1F2F4] hover:tw-rounded-[4px]"
-                                                                href="{{ route('website.set.country', ['country' => $country->id]) }}">
-                                                                <i class="flag-icon {{ $country->icon }}"></i>
-                                                                {{ $country->name }}
-                                                            </a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </form>
-                                @endif
+                                <!-- Updated to show India flag with proper alignment -->
+                                @php
+                                    $country = Modules\Location\Entities\Country::where('id', 103)->first(); // Fetch India (ID 103)
+                                    $flagImage = $country ? asset($country->image) : ''; // Get flag image URL
+                                @endphp
+                                <div class="country-info d-flex align-items-center">
+                                    @if ($flagImage)
+                                        <img src="{{ $flagImage }}" alt="India Flag" style="width: 20px; height: 15px; margin-right: 5px; vertical-align: middle;">
+                                    @endif
+                                    India
+                                </div>
                                 @if (count($headerCurrencies) && $setting->currency_switcher)
                                     @php
                                         $currency_count = count($headerCurrencies) && count($headerCurrencies) > 1;
@@ -447,57 +405,17 @@
                                 @endif
                             </div>
                         @endif
-                        @if ($setting->app_country_type === 'multiple_base')
-                            <form action="{{ route('website.job') }}" method="GET" id="search-form"
-                                class="mx-width-300 xs:tw-inline-flex tw-hidden">
-                                <div class="d-flex">
-                                    @php
-                                        $selected_country = session('selected_country');
-                                    @endphp
-                                    <div class="">
-                                        <div class="dropdown">
-                                            <button class="btn dropdown-toggle" type="button" id=""
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                @if ($selected_country && selected_country())
-                                                    <i class="flag-icon {{ selected_country()->icon }}"></i>
-                                                    {{ selected_country()->name }}
-                                                @else
-                                                    {{ __('all_country') }}
-                                                @endif
-                                            </button>
-
-                                            <ul class="dropdown-menu mx-height-300 overflow-auto tw-p-2"
-                                                aria-labelledby="dropdownMenuButton1">
-                                                <li>
-                                                    <a class="dropdown-item hover:tw-bg-[#F1F2F4] hover:tw-rounded-[4px]"
-                                                        href="{{ route('website.set.country') }}">
-                                                        <svg width="26" height="26" fill="none"
-                                                            stroke="currentColor" viewBox="0 0 24 24"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16">
-                                                            </path>
-                                                        </svg>
-                                                        <span class="marginleft">
-                                                            {{ __('all_country') }}
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                @foreach ($headerCountries as $country)
-                                                    <li id="lang-dropdown-item">
-                                                        <a class="dropdown-item hover:tw-bg-[#F1F2F4] hover:tw-rounded-[4px]"
-                                                            href="{{ route('website.set.country', ['country' => $country->id]) }}">
-                                                            <i class="flag-icon {{ $country->icon }}"></i>
-                                                            {{ $country->name }}
-                                                        </a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        @endif
+                        <!-- Updated to show India flag with proper alignment -->
+                        @php
+                            $country = Modules\Location\Entities\Country::where('id', 103)->first(); // Fetch India (ID 103)
+                            $flagImage = $country ? asset($country->image) : ''; // Get flag image URL
+                        @endphp
+                        <div class="country-info d-flex align-items-center">
+                            @if ($flagImage)
+                                <img src="{{ $flagImage }}" alt="India Flag" style="width: 20px; height: 15px; margin-right: 5px; vertical-align: middle;">
+                            @endif
+                            India
+                        </div>
                     </div>
                     <div class="mobile-menu">
                         <div class="menu-click tw-pe-3">

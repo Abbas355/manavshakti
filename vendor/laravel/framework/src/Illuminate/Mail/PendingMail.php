@@ -132,6 +132,9 @@ class PendingMail
      */
     public function queue(MailableContract $mailable)
     {
+        if (!method_exists($this->mailer, 'queue')) {
+            throw new \BadMethodCallException('The mailer instance does not support queueing.');
+        }
         return $this->mailer->queue($this->fill($mailable));
     }
 
