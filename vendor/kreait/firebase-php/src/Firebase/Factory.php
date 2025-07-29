@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Kreait\Firebase;
 
-use Beste\Cache\InMemoryCache;
 use Beste\Clock\SystemClock;
 use Beste\Clock\WrappingClock;
 use Beste\Json;
 use Firebase\JWT\CachedKeySet;
 use Google\Auth\ApplicationDefaultCredentials;
+use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
@@ -130,9 +130,9 @@ final class Factory
     {
         $this->clock = SystemClock::create();
         $this->httpFactory = new HttpFactory();
-        $this->verifierCache = new InMemoryCache($this->clock);
-        $this->authTokenCache = new InMemoryCache($this->clock);
-        $this->keySetCache = new InMemoryCache($this->clock);
+        $this->verifierCache = new MemoryCacheItemPool();
+        $this->authTokenCache = new MemoryCacheItemPool();
+        $this->keySetCache = new MemoryCacheItemPool();
         $this->httpClientOptions = HttpClientOptions::default();
 
         $googleApplicationCredentials = Util::getenv('GOOGLE_APPLICATION_CREDENTIALS');
@@ -424,6 +424,7 @@ final class Factory
             $projectId,
             $this->httpFactory,
             $this->httpFactory,
+            $errorHandler,
         );
 
         $appInstanceApiClient = new AppInstanceApiClient(
@@ -436,7 +437,7 @@ final class Factory
             $errorHandler,
         );
 
-        return new Messaging($messagingApiClient, $appInstanceApiClient, $errorHandler);
+        return new Messaging($messagingApiClient, $appInstanceApiClient);
     }
 
     /**

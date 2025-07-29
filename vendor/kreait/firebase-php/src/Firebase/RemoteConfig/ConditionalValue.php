@@ -42,7 +42,7 @@ class ConditionalValue implements JsonSerializable
     }
 
     /**
-     * @return RemoteConfigParameterValueShape|non-empty-string
+     * @return RemoteConfigParameterValueShape|string
      */
     public function value()
     {
@@ -50,7 +50,7 @@ class ConditionalValue implements JsonSerializable
 
         $valueString = $data['value'] ?? null;
 
-        if (is_string($valueString) && $valueString !== '') {
+        if ($valueString !== null) {
             return $valueString;
         }
 

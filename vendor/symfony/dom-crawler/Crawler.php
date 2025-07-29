@@ -1090,30 +1090,12 @@ class Crawler implements \Countable, \IteratorAggregate
 
     private function parseHtml5(string $htmlContent, string $charset = 'UTF-8'): \DOMDocument
     {
-        if (!$this->supportsEncoding($charset)) {
-            $htmlContent = $this->convertToHtmlEntities($htmlContent, $charset);
-            $charset = 'UTF-8';
-        }
-
-        return $this->html5Parser->parse($htmlContent, ['encoding' => $charset]);
-    }
-
-    private function supportsEncoding(string $encoding): bool
-    {
-        try {
-            return '' === @mb_convert_encoding('', $encoding, 'UTF-8');
-        } catch (\Throwable $e) {
-            return false;
-        }
+        return $this->html5Parser->parse($this->convertToHtmlEntities($htmlContent, $charset));
     }
 
     private function parseXhtml(string $htmlContent, string $charset = 'UTF-8'): \DOMDocument
     {
-        if ('UTF-8' === $charset && preg_match('//u', $htmlContent)) {
-            $htmlContent = '<?xml encoding="UTF-8">'.$htmlContent;
-        } else {
-            $htmlContent = $this->convertToHtmlEntities($htmlContent, $charset);
-        }
+        $htmlContent = $this->convertToHtmlEntities($htmlContent, $charset);
 
         $internalErrors = libxml_use_internal_errors(true);
 

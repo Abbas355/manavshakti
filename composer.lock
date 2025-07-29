@@ -4,8 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76b534caf6a248c62bf5817edef68caf",
+    "content-hash": "e823093764a5006c29be53e0dab3ef27",
     "packages": [
+        {
+            "name": "anandsiddharth/laravel-paytm-wallet",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/anandsiddharth/laravel-paytm-wallet.git",
+                "reference": "5342add0719e9c5ca94fdd13f766e6a810f2ef45"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/anandsiddharth/laravel-paytm-wallet/zipball/5342add0719e9c5ca94fdd13f766e6a810f2ef45",
+                "reference": "5342add0719e9c5ca94fdd13f766e6a810f2ef45",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": ">=8.0",
+                "illuminate/support": ">=8.0",
+                "php": ">=7.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "PaytmWallet": "Anand\\LaravelPaytmWallet\\Facades\\PaytmWallet"
+                    },
+                    "providers": [
+                        "Anand\\LaravelPaytmWallet\\PaytmWalletServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Anand\\LaravelPaytmWallet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anand Siddharth",
+                    "email": "anandsiddharth21@gmail.com"
+                }
+            ],
+            "description": "Integrate paytm wallet easily with this package. This package uses official Paytm PHP SDK's",
+            "keywords": [
+                "laravel",
+                "paytm wallet"
+            ],
+            "support": {
+                "issues": "https://github.com/anandsiddharth/laravel-paytm-wallet/issues",
+                "source": "https://github.com/anandsiddharth/laravel-paytm-wallet/tree/v2.0.0"
+            },
+            "time": "2020-10-28T06:22:20+00:00"
+        },
         {
             "name": "anhskohbo/no-captcha",
             "version": "3.6.0",
@@ -3426,6 +3482,62 @@
                 }
             ],
             "time": "2022-05-21T17:30:32+00:00"
+        },
+        {
+            "name": "iyzico/iyzipay-php",
+            "version": "v2.0.58",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iyzico/iyzipay-php.git",
+                "reference": "61089e8deb03977af3a1ff396b73dc01ad12fdb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iyzico/iyzipay-php/zipball/61089e8deb03977af3a1ff396b73dc01ad12fdb0",
+                "reference": "61089e8deb03977af3a1ff396b73dc01ad12fdb0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=7.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~9.6",
+                "satooshi/php-coveralls": "~0.6.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Iyzipay\\": "src/Iyzipay/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "iyzico and contributors",
+                    "homepage": "https://github.com/iyzico/iyzipay-php/contributors"
+                }
+            ],
+            "description": "iyzipay api php client",
+            "homepage": "https://www.iyzico.com",
+            "keywords": [
+                "iyzico",
+                "iyzico.com",
+                "iyzipay",
+                "iyzipay api",
+                "iyzipay api php",
+                "iyzipay api php client",
+                "iyzipay php",
+                "payment processing"
+            ],
+            "support": {
+                "issues": "https://github.com/iyzico/iyzipay-php/issues",
+                "source": "https://github.com/iyzico/iyzipay-php/tree/v2.0.58"
+            },
+            "time": "2024-12-26T12:49:12+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
@@ -6943,6 +7055,56 @@
                 "source": "https://github.com/paragonie/sodium_compat/tree/v1.21.1"
             },
             "time": "2024-04-22T22:05:04+00:00"
+        },
+        {
+            "name": "paytm/paytmchecksum",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paytm/Paytm_PHP_Checksum.git",
+                "reference": "a032d3cbeb3846720c2c606b9f3c8057c355042e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paytm/Paytm_PHP_Checksum/zipball/a032d3cbeb3846720c2c606b9f3c8057c355042e",
+                "reference": "a032d3cbeb3846720c2c606b9f3c8057c355042e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "paytm\\paytmchecksum\\": "paytmchecksum/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Soumya Vats",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is for paytm checksum creation and verification in PHP",
+            "homepage": "https://developer.paytm.com/docs/checksum/#php",
+            "keywords": [
+                "Paytm PHP",
+                "Paytm checksum",
+                "Paytm payment",
+                "Paytm signature",
+                "checksum",
+                "paytm",
+                "signature"
+            ],
+            "support": {
+                "issues": "https://github.com/paytm/Paytm_PHP_Checksum/issues",
+                "source": "https://github.com/paytm/Paytm_PHP_Checksum/tree/v1.1.0"
+            },
+            "time": "2020-11-11T13:42:29+00:00"
         },
         {
             "name": "phenx/php-font-lib",
@@ -16310,12 +16472,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.1.0"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

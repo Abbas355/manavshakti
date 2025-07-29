@@ -40,7 +40,6 @@ class Libraryagent extends \Google\Service
 
   public $shelves;
   public $shelves_books;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Libraryagent service.
@@ -53,7 +52,6 @@ class Libraryagent extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://libraryagent.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://libraryagent.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

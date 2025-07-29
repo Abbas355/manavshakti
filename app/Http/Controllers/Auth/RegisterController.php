@@ -142,7 +142,26 @@ class RegisterController extends Controller
             $user->subrole='subcompany';
             $user->save();
         }
-       
+       // Send email to muhammadirfangill87@gmail.com  admins
+    try {
+    $template = EmailTemplate::where('type', $data['role'] == 'candidate' ? 'new_candidate' : 'new_company')->first();
+    if ($template) {
+        $email = new SendCandidateMail(
+            $username,
+            $template->subject,
+            str_replace(['{name}', '{email}'], [$username, $data['email']], $template->message)
+        );
+        Admin::all()->each(function ($admin) use ($email) {
+            Mail::to($admin->email)->queue($email);
+        });
+        \Log::info('Registration email queued for admins', ['user' => $username, 'email' => $data['email']]);
+    } else {
+        \Log::warning('Email template not found for type: ' . ($data['role'] == 'candidate' ? 'new_candidate' : 'new_company'));
+    }
+} catch (\Throwable $th) {
+    \Log::error('Failed to queue registration email: ' . $th->getMessage(), ['user' => $username, 'email' => $data['email']]);
+}
+
         try {
             $admins = Admin::all();
             foreach ($admins as $admin) {
@@ -173,7 +192,7 @@ class RegisterController extends Controller
         //         }
         //     }
         // }
-
+     
         // This code is commented only to reduce bounce rate
 
         return $user;

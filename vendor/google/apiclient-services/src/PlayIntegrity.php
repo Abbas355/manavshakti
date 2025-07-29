@@ -42,7 +42,6 @@ class PlayIntegrity extends \Google\Service
       "https://www.googleapis.com/auth/playintegrity";
 
   public $v1;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the PlayIntegrity service.
@@ -55,7 +54,6 @@ class PlayIntegrity extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://playintegrity.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://playintegrity.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

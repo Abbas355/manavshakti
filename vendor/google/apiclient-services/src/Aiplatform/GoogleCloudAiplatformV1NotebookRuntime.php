@@ -77,14 +77,6 @@ class GoogleCloudAiplatformV1NotebookRuntime extends \Google\Collection
    */
   public $runtimeUser;
   /**
-   * @var bool
-   */
-  public $satisfiesPzi;
-  /**
-   * @var bool
-   */
-  public $satisfiesPzs;
-  /**
    * @var string
    */
   public $serviceAccount;
@@ -306,34 +298,6 @@ class GoogleCloudAiplatformV1NotebookRuntime extends \Google\Collection
   public function getRuntimeUser()
   {
     return $this->runtimeUser;
-  }
-  /**
-   * @param bool
-   */
-  public function setSatisfiesPzi($satisfiesPzi)
-  {
-    $this->satisfiesPzi = $satisfiesPzi;
-  }
-  /**
-   * @return bool
-   */
-  public function getSatisfiesPzi()
-  {
-    return $this->satisfiesPzi;
-  }
-  /**
-   * @param bool
-   */
-  public function setSatisfiesPzs($satisfiesPzs)
-  {
-    $this->satisfiesPzs = $satisfiesPzs;
-  }
-  /**
-   * @return bool
-   */
-  public function getSatisfiesPzs()
-  {
-    return $this->satisfiesPzs;
   }
   /**
    * @param string

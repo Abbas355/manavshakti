@@ -187,6 +187,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Ladumor\LaravelPwa\PWAServiceProvider::class,
         Kreait\Laravel\Firebase\ServiceProvider::class,
+        Anand\LaravelPaytmWallet\PaytmWalletServiceProvider::class,
     ],
 
     /*
@@ -248,6 +249,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
         'Firebase' => Kreait\Laravel\Firebase\Facades\Firebase::class,
+        'PaytmWallet' => Anand\LaravelPaytmWallet\Facades\PaytmWallet::class,
     ],
 
     'version' => '3.18.0',

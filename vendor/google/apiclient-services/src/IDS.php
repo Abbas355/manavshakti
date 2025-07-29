@@ -45,7 +45,6 @@ class IDS extends \Google\Service
   public $projects_locations;
   public $projects_locations_endpoints;
   public $projects_locations_operations;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the IDS service.
@@ -58,7 +57,6 @@ class IDS extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://ids.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://ids.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

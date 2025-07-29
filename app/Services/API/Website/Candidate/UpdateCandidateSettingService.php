@@ -45,7 +45,8 @@ class UpdateCandidateSettingService
             return $this->updateCardInfo($request, $user, $candidate);
         }
     }
-    protected function updateCardInfo($request, $user, $candidate) {
+
+      protected function updateCardInfo($request, $user, $candidate) {
         $validator = Validator::make($request->all(), [
             'image' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
             'date_of_birth' => 'required|date',

@@ -61,7 +61,6 @@ class Dataflow extends \Google\Service
   public $projects_locations_templates;
   public $projects_snapshots;
   public $projects_templates;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Dataflow service.
@@ -74,7 +73,6 @@ class Dataflow extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://dataflow.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://dataflow.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1b3';

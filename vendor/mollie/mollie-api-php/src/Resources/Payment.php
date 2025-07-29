@@ -729,10 +729,7 @@ class Payment extends BaseResource
             "dueDate" => $this->dueDate,
         ];
 
-        $result = $this->client->payments->update(
-            $this->id,
-            $this->withPresetOptions($body)
-        );
+        $result = $this->client->payments->update($this->id, $body);
 
         return ResourceFactory::createFromApiResult($result, new Payment($this->client));
     }

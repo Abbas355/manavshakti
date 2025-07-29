@@ -42,7 +42,6 @@ class PagespeedInsights extends \Google\Service
       "openid";
 
   public $pagespeedapi;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the PagespeedInsights service.
@@ -55,7 +54,6 @@ class PagespeedInsights extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://pagespeedonline.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://pagespeedonline.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v5';

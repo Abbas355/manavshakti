@@ -39,7 +39,6 @@ class FirebaseML extends \Google\Service
       "https://www.googleapis.com/auth/cloud-platform";
 
   public $operations;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the FirebaseML service.
@@ -52,7 +51,6 @@ class FirebaseML extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://firebaseml.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://firebaseml.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

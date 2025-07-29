@@ -44,10 +44,6 @@ class Channel extends \Google\Model
    */
   public $pubsubTopic;
   /**
-   * @var bool
-   */
-  public $satisfiesPzs;
-  /**
    * @var string
    */
   public $state;
@@ -143,20 +139,6 @@ class Channel extends \Google\Model
   public function getPubsubTopic()
   {
     return $this->pubsubTopic;
-  }
-  /**
-   * @param bool
-   */
-  public function setSatisfiesPzs($satisfiesPzs)
-  {
-    $this->satisfiesPzs = $satisfiesPzs;
-  }
-  /**
-   * @return bool
-   */
-  public function getSatisfiesPzs()
-  {
-    return $this->satisfiesPzs;
   }
   /**
    * @param string

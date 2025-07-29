@@ -43,7 +43,6 @@ class CloudBillingBudget extends \Google\Service
       "https://www.googleapis.com/auth/cloud-platform";
 
   public $billingAccounts_budgets;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudBillingBudget service.
@@ -56,7 +55,6 @@ class CloudBillingBudget extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://billingbudgets.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://billingbudgets.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

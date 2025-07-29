@@ -44,7 +44,6 @@ class Texttospeech extends \Google\Service
   public $projects_locations_operations;
   public $text;
   public $voices;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Texttospeech service.
@@ -57,7 +56,6 @@ class Texttospeech extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://texttospeech.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://texttospeech.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

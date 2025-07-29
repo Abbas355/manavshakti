@@ -46,8 +46,6 @@ class GoogleCloudRunV2RevisionTemplate extends \Google\Collection
    * @var int
    */
   public $maxInstanceRequestConcurrency;
-  protected $nodeSelectorType = GoogleCloudRunV2NodeSelector::class;
-  protected $nodeSelectorDataType = '';
   /**
    * @var string
    */
@@ -168,20 +166,6 @@ class GoogleCloudRunV2RevisionTemplate extends \Google\Collection
   public function getMaxInstanceRequestConcurrency()
   {
     return $this->maxInstanceRequestConcurrency;
-  }
-  /**
-   * @param GoogleCloudRunV2NodeSelector
-   */
-  public function setNodeSelector(GoogleCloudRunV2NodeSelector $nodeSelector)
-  {
-    $this->nodeSelector = $nodeSelector;
-  }
-  /**
-   * @return GoogleCloudRunV2NodeSelector
-   */
-  public function getNodeSelector()
-  {
-    return $this->nodeSelector;
   }
   /**
    * @param string

@@ -190,9 +190,8 @@ class ProjectsLocationsDeliveryPipelines extends \Google\Service\Resource
    * Updates the parameters of a single DeliveryPipeline.
    * (deliveryPipelines.patch)
    *
-   * @param string $name Optional. Name of the `DeliveryPipeline`. Format is `proj
-   * ects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}`.
-   * The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
+   * @param string $name Optional. Name of the `DeliveryPipeline`. Format is
+   * `projects/{project}/locations/{location}/deliveryPipelines/a-z{0,62}`.
    * @param DeliveryPipeline $postBody
    * @param array $optParams Optional parameters.
    *

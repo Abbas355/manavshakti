@@ -50,7 +50,6 @@ class Firestore extends \Google\Service
   public $projects_databases_operations;
   public $projects_locations;
   public $projects_locations_backups;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Firestore service.
@@ -63,7 +62,6 @@ class Firestore extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://firestore.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://firestore.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -141,10 +139,6 @@ class Firestore extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-                'showDeleted' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ],
               ],
             ],'patch' => [

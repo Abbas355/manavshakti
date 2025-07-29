@@ -54,7 +54,6 @@ class NetworkSecurity extends \Google\Service
   public $projects_locations_serverTlsPolicies;
   public $projects_locations_tlsInspectionPolicies;
   public $projects_locations_urlLists;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the NetworkSecurity service.
@@ -67,7 +66,6 @@ class NetworkSecurity extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://networksecurity.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://networksecurity.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

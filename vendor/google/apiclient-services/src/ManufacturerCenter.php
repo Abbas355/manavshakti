@@ -40,7 +40,6 @@ class ManufacturerCenter extends \Google\Service
 
   public $accounts_languages_productCertifications;
   public $accounts_products;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the ManufacturerCenter service.
@@ -53,7 +52,6 @@ class ManufacturerCenter extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://manufacturers.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://manufacturers.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

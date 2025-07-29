@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\SocialAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\WebsiteController;
+
+use App\Http\Controllers\Payment\RazorpayController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -159,5 +161,5 @@ Route::middleware(['auth:sanctum', 'api_company', 'api_has_plan'])->prefix('comp
         Route::post('/applications/{id}/group-update', 'applicationGroupUpdate');
         Route::get('/download-cv/{id}', 'downloadCv');
     });
-
+   Route::post('payment', [RazorpayController::class, 'payment'])->name('razorpay.post');
 });

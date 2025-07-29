@@ -44,7 +44,6 @@ class TPU extends \Google\Service
   public $projects_locations_operations;
   public $projects_locations_queuedResources;
   public $projects_locations_runtimeVersions;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the TPU service.
@@ -57,7 +56,6 @@ class TPU extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://tpu.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://tpu.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';

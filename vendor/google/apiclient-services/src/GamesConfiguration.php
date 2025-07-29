@@ -41,7 +41,6 @@ class GamesConfiguration extends \Google\Service
 
   public $achievementConfigurations;
   public $leaderboardConfigurations;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the GamesConfiguration service.
@@ -54,7 +53,6 @@ class GamesConfiguration extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://gamesconfiguration.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://gamesconfiguration.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1configuration';

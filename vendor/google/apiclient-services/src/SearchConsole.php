@@ -47,7 +47,6 @@ class SearchConsole extends \Google\Service
   public $sites;
   public $urlInspection_index;
   public $urlTestingTools_mobileFriendlyTest;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the SearchConsole service.
@@ -60,7 +59,6 @@ class SearchConsole extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://searchconsole.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://searchconsole.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

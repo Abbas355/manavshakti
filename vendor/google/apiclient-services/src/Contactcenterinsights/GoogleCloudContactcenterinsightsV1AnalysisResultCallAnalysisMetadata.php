@@ -32,8 +32,6 @@ class GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadata exten
   protected $phraseMatchersDataType = 'map';
   protected $sentimentsType = GoogleCloudContactcenterinsightsV1ConversationLevelSentiment::class;
   protected $sentimentsDataType = 'array';
-  protected $silenceType = GoogleCloudContactcenterinsightsV1ConversationLevelSilence::class;
-  protected $silenceDataType = '';
 
   /**
    * @param GoogleCloudContactcenterinsightsV1CallAnnotation[]
@@ -118,20 +116,6 @@ class GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadata exten
   public function getSentiments()
   {
     return $this->sentiments;
-  }
-  /**
-   * @param GoogleCloudContactcenterinsightsV1ConversationLevelSilence
-   */
-  public function setSilence(GoogleCloudContactcenterinsightsV1ConversationLevelSilence $silence)
-  {
-    $this->silence = $silence;
-  }
-  /**
-   * @return GoogleCloudContactcenterinsightsV1ConversationLevelSilence
-   */
-  public function getSilence()
-  {
-    return $this->silence;
   }
 }
 

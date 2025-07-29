@@ -39,10 +39,6 @@ class TableFieldSchema extends \Google\Collection
   /**
    * @var string
    */
-  public $foreignTypeDefinition;
-  /**
-   * @var string
-   */
   public $maxLength;
   /**
    * @var string
@@ -142,20 +138,6 @@ class TableFieldSchema extends \Google\Collection
   public function getFields()
   {
     return $this->fields;
-  }
-  /**
-   * @param string
-   */
-  public function setForeignTypeDefinition($foreignTypeDefinition)
-  {
-    $this->foreignTypeDefinition = $foreignTypeDefinition;
-  }
-  /**
-   * @return string
-   */
-  public function getForeignTypeDefinition()
-  {
-    return $this->foreignTypeDefinition;
   }
   /**
    * @param string

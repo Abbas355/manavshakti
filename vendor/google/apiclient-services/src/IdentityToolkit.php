@@ -42,7 +42,6 @@ class IdentityToolkit extends \Google\Service
       "https://www.googleapis.com/auth/firebase";
 
   public $relyingparty;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the IdentityToolkit service.
@@ -55,7 +54,6 @@ class IdentityToolkit extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://www.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://www.UNIVERSE_DOMAIN/';
     $this->servicePath = 'identitytoolkit/v3/relyingparty/';
     $this->batchPath = 'batch/identitytoolkit/v3';
     $this->version = 'v3';

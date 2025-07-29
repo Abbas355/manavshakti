@@ -6,11 +6,7 @@ class Key
 {
     const UP = "\e[A";
 
-    const SHIFT_UP = "\e[1;2A";
-
     const DOWN = "\e[B";
-
-    const SHIFT_DOWN = "\e[1;2B";
 
     const RIGHT = "\e[C";
 
@@ -23,8 +19,6 @@ class Key
     const RIGHT_ARROW = "\eOC";
 
     const LEFT_ARROW = "\eOD";
-
-    const ESCAPE = "\e";
 
     const DELETE = "\e[3~";
 

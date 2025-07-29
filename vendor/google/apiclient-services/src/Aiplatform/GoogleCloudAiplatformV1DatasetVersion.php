@@ -42,10 +42,6 @@ class GoogleCloudAiplatformV1DatasetVersion extends \Google\Model
   /**
    * @var string
    */
-  public $modelReference;
-  /**
-   * @var string
-   */
   public $name;
   /**
    * @var string
@@ -121,20 +117,6 @@ class GoogleCloudAiplatformV1DatasetVersion extends \Google\Model
   public function getMetadata()
   {
     return $this->metadata;
-  }
-  /**
-   * @param string
-   */
-  public function setModelReference($modelReference)
-  {
-    $this->modelReference = $modelReference;
-  }
-  /**
-   * @return string
-   */
-  public function getModelReference()
-  {
-    return $this->modelReference;
   }
   /**
    * @param string

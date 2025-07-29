@@ -63,6 +63,10 @@ final class SendReport
     {
         $errorMessage = $this->error !== null ? $this->error->getMessage() : '';
 
+        if (!$this->messageWasInvalid()) {
+            return false;
+        }
+
         return preg_match('/((not.+valid)|invalid).+token/i', $errorMessage) === 1;
     }
 

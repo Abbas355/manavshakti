@@ -26,10 +26,6 @@ class GoogleCloudIntegrationsV1alphaIntegration extends \Google\Model
   /**
    * @var string
    */
-  public $createTime;
-  /**
-   * @var string
-   */
   public $creatorEmail;
   /**
    * @var string
@@ -61,20 +57,6 @@ class GoogleCloudIntegrationsV1alphaIntegration extends \Google\Model
   public function getActive()
   {
     return $this->active;
-  }
-  /**
-   * @param string
-   */
-  public function setCreateTime($createTime)
-  {
-    $this->createTime = $createTime;
-  }
-  /**
-   * @return string
-   */
-  public function getCreateTime()
-  {
-    return $this->createTime;
   }
   /**
    * @param string

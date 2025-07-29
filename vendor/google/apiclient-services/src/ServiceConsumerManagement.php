@@ -41,7 +41,6 @@ class ServiceConsumerManagement extends \Google\Service
   public $operations;
   public $services;
   public $services_tenancyUnits;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the ServiceConsumerManagement
@@ -55,7 +54,6 @@ class ServiceConsumerManagement extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://serviceconsumermanagement.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://serviceconsumermanagement.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

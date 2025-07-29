@@ -40,7 +40,6 @@ class Localservices extends \Google\Service
 
   public $accountReports;
   public $detailedLeadReports;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Localservices service.
@@ -53,7 +52,6 @@ class Localservices extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://localservices.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://localservices.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

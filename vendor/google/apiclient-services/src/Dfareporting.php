@@ -110,7 +110,6 @@ class Dfareporting extends \Google\Service
   public $userRolePermissions;
   public $userRoles;
   public $videoFormats;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Dfareporting service.
@@ -123,7 +122,6 @@ class Dfareporting extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://dfareporting.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://dfareporting.UNIVERSE_DOMAIN/';
     $this->servicePath = 'dfareporting/v4/';
     $this->batchPath = 'batch';
     $this->version = 'v4';

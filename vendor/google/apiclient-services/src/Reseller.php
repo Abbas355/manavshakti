@@ -45,7 +45,6 @@ class Reseller extends \Google\Service
   public $customers;
   public $resellernotify;
   public $subscriptions;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Reseller service.
@@ -58,7 +57,6 @@ class Reseller extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://reseller.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://reseller.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

@@ -54,7 +54,6 @@ class DeploymentManager extends \Google\Service
   public $operations;
   public $resources;
   public $types;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the DeploymentManager service.
@@ -67,7 +66,6 @@ class DeploymentManager extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://deploymentmanager.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://deploymentmanager.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';

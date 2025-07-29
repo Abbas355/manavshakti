@@ -39,7 +39,6 @@ class Playcustomapp extends \Google\Service
       "https://www.googleapis.com/auth/androidpublisher";
 
   public $accounts_customApps;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Playcustomapp service.
@@ -52,7 +51,6 @@ class Playcustomapp extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://playcustomapp.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://playcustomapp.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

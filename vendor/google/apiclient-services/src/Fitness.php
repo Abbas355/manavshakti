@@ -106,7 +106,6 @@ class Fitness extends \Google\Service
   public $users_dataSources_datasets;
   public $users_dataset;
   public $users_sessions;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Fitness service.
@@ -119,7 +118,6 @@ class Fitness extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://fitness.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://fitness.UNIVERSE_DOMAIN/';
     $this->servicePath = 'fitness/v1/users/';
     $this->batchPath = 'batch';
     $this->version = 'v1';

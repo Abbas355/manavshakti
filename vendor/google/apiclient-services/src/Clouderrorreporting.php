@@ -44,7 +44,6 @@ class Clouderrorreporting extends \Google\Service
   public $projects_events;
   public $projects_groupStats;
   public $projects_groups;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Clouderrorreporting service.
@@ -57,7 +56,6 @@ class Clouderrorreporting extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://clouderrorreporting.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://clouderrorreporting.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1beta1';

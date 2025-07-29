@@ -1317,6 +1317,10 @@ class Connection
             throw ConnectionException::mayNotAlterNestedTransactionWithSavepointsInTransaction();
         }
 
+        if (! $this->getDatabasePlatform()->supportsSavepoints()) {
+            throw ConnectionException::savepointsNotSupported();
+        }
+
         $this->nestTransactionsWithSavepoints = (bool) $nestTransactionsWithSavepoints;
     }
 

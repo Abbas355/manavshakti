@@ -41,7 +41,6 @@ class Assuredworkloads extends \Google\Service
   public $organizations_locations_operations;
   public $organizations_locations_workloads;
   public $organizations_locations_workloads_violations;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Assuredworkloads service.
@@ -54,7 +53,6 @@ class Assuredworkloads extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://assuredworkloads.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://assuredworkloads.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

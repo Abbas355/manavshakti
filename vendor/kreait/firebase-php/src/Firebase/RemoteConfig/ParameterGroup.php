@@ -91,9 +91,6 @@ final class ParameterGroup implements JsonSerializable
         ];
     }
 
-    /**
-     * @return RemoteConfigParameterGroupShape
-     */
     public function jsonSerialize(): array
     {
         return $this->toArray();

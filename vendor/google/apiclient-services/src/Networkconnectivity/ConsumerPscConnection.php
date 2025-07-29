@@ -45,10 +45,6 @@ class ConsumerPscConnection extends \Google\Model
   /**
    * @var string
    */
-  public $producerInstanceId;
-  /**
-   * @var string
-   */
   public $project;
   /**
    * @var string
@@ -164,20 +160,6 @@ class ConsumerPscConnection extends \Google\Model
   public function getNetwork()
   {
     return $this->network;
-  }
-  /**
-   * @param string
-   */
-  public function setProducerInstanceId($producerInstanceId)
-  {
-    $this->producerInstanceId = $producerInstanceId;
-  }
-  /**
-   * @return string
-   */
-  public function getProducerInstanceId()
-  {
-    return $this->producerInstanceId;
   }
   /**
    * @param string

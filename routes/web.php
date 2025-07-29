@@ -13,3 +13,4 @@ Route::fallback(function () {
 
     return view('errors.404');
 });
+

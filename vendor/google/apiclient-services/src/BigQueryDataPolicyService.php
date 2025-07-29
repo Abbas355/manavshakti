@@ -42,7 +42,6 @@ class BigQueryDataPolicyService extends \Google\Service
       "https://www.googleapis.com/auth/cloud-platform";
 
   public $projects_locations_dataPolicies;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the BigQueryDataPolicyService
@@ -56,7 +55,6 @@ class BigQueryDataPolicyService extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://bigquerydatapolicy.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://bigquerydatapolicy.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

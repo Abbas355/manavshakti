@@ -45,7 +45,6 @@ class CloudProfiler extends \Google\Service
       "https://www.googleapis.com/auth/monitoring.write";
 
   public $projects_profiles;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudProfiler service.
@@ -58,7 +57,6 @@ class CloudProfiler extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://cloudprofiler.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://cloudprofiler.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';

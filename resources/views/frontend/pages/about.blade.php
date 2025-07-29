@@ -30,6 +30,7 @@
                         </p>
                     </div>
                 </div>
+                <!-- Live jobs data -->
                 <div class="col-lg-3 col-md-4 rt-pt-md-30">
                     <div class="about-counter">
                         <div class="card jobcardStyle1 counterbox2 rt-mb-40">

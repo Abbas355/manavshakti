@@ -44,7 +44,6 @@ class CloudNaturalLanguage extends \Google\Service
       "https://www.googleapis.com/auth/cloud-platform";
 
   public $documents;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudNaturalLanguage service.
@@ -57,7 +56,6 @@ class CloudNaturalLanguage extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://language.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://language.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';

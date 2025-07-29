@@ -44,7 +44,6 @@ class Eventarc extends \Google\Service
   public $projects_locations_operations;
   public $projects_locations_providers;
   public $projects_locations_triggers;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Eventarc service.
@@ -57,7 +56,6 @@ class Eventarc extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://eventarc.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://eventarc.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

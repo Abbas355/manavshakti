@@ -51,7 +51,6 @@ class ServiceNetworking extends \Google\Service
   public $services_projects_global_networks_dnsZones;
   public $services_projects_global_networks_peeredDnsDomains;
   public $services_roles;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the ServiceNetworking service.
@@ -64,7 +63,6 @@ class ServiceNetworking extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://servicenetworking.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://servicenetworking.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

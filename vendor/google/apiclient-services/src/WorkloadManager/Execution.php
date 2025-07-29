@@ -17,9 +17,8 @@
 
 namespace Google\Service\WorkloadManager;
 
-class Execution extends \Google\Collection
+class Execution extends \Google\Model
 {
-  protected $collection_key = 'externalDataSources';
   /**
    * @var string
    */
@@ -28,8 +27,6 @@ class Execution extends \Google\Collection
    * @var string
    */
   public $evaluationId;
-  protected $externalDataSourcesType = ExternalDataSources::class;
-  protected $externalDataSourcesDataType = 'array';
   /**
    * @var string
    */
@@ -82,20 +79,6 @@ class Execution extends \Google\Collection
   public function getEvaluationId()
   {
     return $this->evaluationId;
-  }
-  /**
-   * @param ExternalDataSources[]
-   */
-  public function setExternalDataSources($externalDataSources)
-  {
-    $this->externalDataSources = $externalDataSources;
-  }
-  /**
-   * @return ExternalDataSources[]
-   */
-  public function getExternalDataSources()
-  {
-    return $this->externalDataSources;
   }
   /**
    * @param string

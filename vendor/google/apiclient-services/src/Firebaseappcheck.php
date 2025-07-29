@@ -52,7 +52,6 @@ class Firebaseappcheck extends \Google\Service
   public $projects_apps_recaptchaV3Config;
   public $projects_apps_safetyNetConfig;
   public $projects_services;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Firebaseappcheck service.
@@ -65,7 +64,6 @@ class Firebaseappcheck extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://firebaseappcheck.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://firebaseappcheck.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

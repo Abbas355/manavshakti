@@ -51,7 +51,6 @@ class SQLAdmin extends \Google\Service
   public $sslCerts;
   public $tiers;
   public $users;
-  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the SQLAdmin service.
@@ -64,7 +63,6 @@ class SQLAdmin extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://sqladmin.googleapis.com/';
-    $this->rootUrlTemplate = $rootUrl ?: 'https://sqladmin.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
